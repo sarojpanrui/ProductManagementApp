@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Backend</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Backend.Domain\Backend.Domain.csproj" />
+    <ProjectReference Include="..\Backend.Application.Contracts\Backend.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="10.2.1" />
+  </ItemGroup>
+
+</Project>

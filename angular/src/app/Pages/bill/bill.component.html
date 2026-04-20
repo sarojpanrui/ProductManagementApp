@@ -1,0 +1,65 @@
+<div class="container mt-4">
+
+  <!-- Navbar / Header -->
+  <nav class="navbar bg-white shadow-sm px-4 py-3 rounded-4 mb-4 sticky-top">
+
+    <div class="container-fluid p-0 d-flex align-items-center justify-content-between flex-wrap gap-3">
+
+      <!-- Title -->
+      <h3 class="fw-bold text-primary m-0">
+         All Bills
+      </h3>
+
+      <!-- Search + Button -->
+      <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-end">
+
+        <!-- Search -->
+        <div class="input-group" style="max-width: 350px;">
+          
+          <input
+            type="text"
+            class="form-control border-start-0 rounded-pill"
+            placeholder="Search customer..."
+            [(ngModel)]="searchText"
+          />
+        </div>
+
+        <!-- Clear -->
+        <button
+          class="btn btn-outline-secondary rounded-pill"
+          (click)="searchText=''">
+          Clear
+        </button>
+
+        <!-- Action -->
+        <button
+          type="button"
+          class="btn btn-success rounded-pill px-4 shadow-sm"
+          routerLink="/generateBill">
+          + Generate Bill
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Bills Grid -->
+  <div class="row g-3">
+    @for (b of filteredBills; track b.id) {
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <app-bill-card
+          [bill]="b"
+          (deleted)="fetchBills()"
+          (updated)="fetchBills()">
+        </app-bill-card>
+      </div>
+    }
+  </div>
+
+  <!-- Empty State -->
+  @if (filteredBills.length === 0) {
+    <div class="text-center mt-5 text-muted">
+      <h5>No bills found...</h5>
+    </div>
+  }
+</div>

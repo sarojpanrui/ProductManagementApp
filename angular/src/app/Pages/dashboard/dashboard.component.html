@@ -1,0 +1,128 @@
+<div class="container my-4">
+  <div class="row g-4">
+
+    <!-- Products -->
+    <div class="col-12 col-md-4">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="icon-box bg-primary-subtle text-primary">
+            
+          </div>
+          <div>
+            <h6 class="text-muted mb-1">Total Products</h6>
+            <h3 class="fw-bold mb-0 fs-1 text-primary">{{ product_count }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bills -->
+    <div class="col-12 col-md-4">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="icon-box bg-success-subtle text-success">
+            
+          </div>
+          <div>
+            <h6 class="text-muted mb-1">Total Bills</h6>
+            <h3 class="fw-bold mb-0 fs-1 text-warning">{{ bill_count }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Income -->
+    <div class="col-12 col-md-4">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <div class="icon-box bg-warning-subtle text-warning">
+                
+              </div>
+              <h6 class="text-muted mb-0">Total Income</h6>
+            </div>
+
+            <select
+              class="form-select form-select-sm w-auto"
+              [(ngModel)]="dateFilter"
+              (change)="fetchBills()"
+            >
+              <option value="all">All</option>
+              <option value="today">Today</option>
+              <option value="month">This Month</option>
+              <option value="year">This Year</option>
+            </select>
+
+
+          </div>
+
+          <h2 class="fw-bold text-success mb-1">
+            ₹ {{ total_bill_amount }}
+          </h2>
+
+          <small class="text-muted">
+            {{ bill_count }} bills
+          </small>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row g-4">
+
+    <!-- Recent Products -->
+    <div class="col-12 col-lg-6">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+
+          <h5 class="fw-bold mb-3"> Recent Products</h5>
+
+          @if (recentProducts?.length > 0) {
+            @for (item of recentProducts; track item.id) {
+              <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <span class="fw-medium">{{ item.name }}</span>
+                <span class="text-primary fw-semibold">₹{{ item.price }}</span>
+              </div>
+            }
+          } @else {
+            <div class="text-muted">No products found</div>
+          }
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Bills -->
+    <div class="col-12 col-lg-6">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+
+          <h5 class="fw-bold mb-3"> Recent Bills</h5>
+
+          @if (recentBills?.length > 0) {
+            @for (item of recentBills; track item.id) {
+              <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <span class="fw-medium">{{ item.customer }}</span>
+                <span class="text-success fw-bold">₹{{ item.totalAmount }}
+                   
+                </span>
+                
+              </div>
+            }
+          } @else {
+            <div class="text-muted">No bills found</div>
+          }
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

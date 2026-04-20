@@ -1,0 +1,103 @@
+<div class="container my-5" style="max-width: 900px;">
+  <div class="card shadow border-0" id="invoice">
+
+    <!-- Header -->
+    <div class="card-body border-bottom">
+      <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+        <!-- Company Info -->
+        <div>
+          <h2 class="fw-bold text-primary mb-0">SentientGeeks</h2>
+          <small class="text-muted">Kolkata, India</small>
+        </div>
+
+        <!-- Invoice Info -->
+        <div class="text-md-end mt-3 mt-md-0">
+          <h4 class="fw-bold mb-1">INVOICE</h4>
+          <div><strong>Bill ID:</strong> {{ bill?.id }}</div>
+          <div><strong>Date:</strong> {{ today | date:'mediumDate' }}</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Customer + Summary -->
+    <div class="card-body">
+      <div class="row mb-4">
+
+        <div class="col-md-6">
+          <h6 class="text-muted">Bill To</h6>
+          <h5 class="fw-semibold">{{ bill?.customer }}</h5>
+        </div>
+
+        <div class="col-md-6 text-md-end">
+          <h6 class="text-muted">Total Amount</h6>
+          <h3 class="text-success fw-bold">₹ {{ bill?.totalAmount }}</h3>
+        </div>
+
+      </div>
+
+      <!-- Products Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Sl.no</th>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @if (parsedProducts?.length > 0) {
+              @for (p of parsedProducts; track p.id) {
+                <tr>
+                  <td>{{ $index + 1 }}</td>
+                  <td>{{ p.id }}</td>
+                  <td>{{ p.name }}</td>
+                  <td>{{p.price}}</td>
+                </tr>
+              }
+            } @else {
+              <tr>
+                <td colspan="3" class="text-center text-muted">
+                  No products found
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Total Section -->
+      <div class="row justify-content-end mt-4">
+        <div class="col-md-5">
+          <div class="d-flex justify-content-between border-top pt-3">
+            <h5>Total</h5>
+            <h5 class="fw-bold text-success">₹ {{ bill?.totalAmount }}</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-5">
+        <hr />
+        <p class="mb-1">Thank you for your business</p>
+        <small class="text-muted">This is a system generated invoice</small>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-primary me-2 px-4" (click)="printInvoice()">
+       Print
+    </button>
+
+    <button class="btn btn-success px-4" (click)="downloadPDF()">
+       Download PDF
+    </button>
+  </div>
+</div>

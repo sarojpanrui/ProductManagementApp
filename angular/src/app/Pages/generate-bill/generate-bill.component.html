@@ -1,0 +1,75 @@
+<div class="container mt-5" style="max-width: 700px;">
+  <abp-card>
+    <abp-card-body>
+      <h3 class="mb-4 text-primary fw-bold">Generate Bill</h3>
+
+      <form [formGroup]="form" (ngSubmit)="create()">
+        <div class="mb-3">
+          <label class="form-label">
+            Customer Name <span class="text-danger">*</span>
+          </label>
+          <input type="text" class="form-control" formControlName="customer" placeholder="Enter customer name"
+            autofocus />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">
+            Purchased Products <span class="text-danger">*</span>
+          </label>
+
+          <!-- Selected Products (Tags UI) -->
+          <div class="form-control d-flex flex-wrap gap-2" style="min-height: 45px;">
+
+            @for (p of selectedProducts; track p.id) {
+            <span class="badge bg-primary d-flex align-items-center">
+              {{ p.name }}
+
+              <span class="ms-2" style="cursor:pointer" (click)="removeProduct(p)">
+                ✕
+              </span>
+            </span>
+            }
+
+            @if (selectedProducts.length === 0) {
+            <span class="text-muted">Select products...</span>
+            }
+          </div>
+
+          <!-- Search Input -->
+          <input type="text" class="form-control mt-2" placeholder="Search product..."
+            formControlName="productSearch" />
+
+          <!-- Dropdown List -->
+          <div class="border rounded mt-2 p-2" style="max-height: 200px; overflow-y: auto;">
+
+            @for (p of filteredProductList; track p.id) {
+            <div class="dropdown-item" style="cursor:pointer" (click)="addProduct(p)">
+              {{ p.name }} (Qty: {{ p.quantity }}) (Price : {{p.price}})
+            </div>
+            }
+
+            @if (filteredProductList.length === 0) {
+            <div class="text-muted text-center py-2">
+              No products found
+            </div>
+            }
+
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">
+            Total Amount <span class="text-danger">*</span>
+          </label>
+          <input type="number" class="form-control" formControlName="totalAmount" placeholder="Enter total amount"
+            readonly />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid">
+          Generate Bill
+        </button>
+      </form>
+    </abp-card-body>
+  </abp-card>
+</div>
+

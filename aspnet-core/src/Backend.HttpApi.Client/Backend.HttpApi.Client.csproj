@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Backend</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Backend.Application.Contracts\Backend.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Volo.Abp.Account.HttpApi.Client" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi.Client" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi.Client" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi.Client" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi.Client" Version="10.2.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi.Client" Version="10.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="**\*generate-proxy.json" />
+    <Content Remove="**\*generate-proxy.json" />
+  </ItemGroup>
+
+</Project>

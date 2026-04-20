@@ -1,0 +1,87 @@
+<div class="card shadow-sm border-0 rounded-4 h-100">
+  <div class="card-body d-flex flex-column">
+
+    <!-- Header -->
+    <div class="mb-2">
+      <h5 class="fw-bold text-primary mb-1">
+        {{ bill.customer }}
+      </h5>
+      <small class="text-muted">
+        Bill ID: {{ bill.id }}
+      </small>
+    </div>
+
+    <!-- Amount -->
+    <div class="mb-3">
+      <span class="fs-5 fw-semibold text-success">
+        ₹ {{ bill.totalAmount }}
+      </span>
+    </div>
+
+    <!-- Products Preview -->
+    <div class="mb-3">
+      <small class="text-muted">Products</small>
+      <p class="mb-0 small text-truncate">
+        {{ bill.buyProducts }}
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex gap-2 mt-auto">
+
+      <button
+        class="btn btn-outline-danger btn-sm w-100"
+        (click)="delete(bill.id)">
+         Delete
+      </button>
+
+      <button
+        class="btn btn-outline-primary btn-sm w-100"
+        (click)="openEditForm()">
+         Edit
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-success btn-sm w-100"
+        [routerLink]="['/viewbill', bill.id]">
+         View
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<abp-modal [(visible)]="isOpen">
+  <ng-template #abpHeader>
+    <h3>Update Bill</h3>
+  </ng-template>
+
+  <ng-template #abpBody>
+    <form id="billForm" [formGroup]="form" (ngSubmit)="edit(bill.id)">
+      <div class="mt-3">
+        <label>Customer <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="customer" autofocus />
+      </div>
+
+      <div class="mt-3">
+        <label>Total Amount <span class="text-danger">*</span></label>
+        <input type="number" class="form-control" formControlName="totalAmount" />
+      </div>
+
+      <div class="mt-3">
+        <label>Buy Products <span class="text-danger">*</span></label>
+        <textarea class="form-control" rows="3" formControlName="buyProducts"> </textarea>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <button type="button" class="btn btn-secondary" abpClose (click)="closeForm()">Close</button>
+
+    <button type="submit" form="billForm" class="btn btn-primary" [disabled]="form.invalid">
+      Save Bill
+    </button>
+  </ng-template>
+</abp-modal>

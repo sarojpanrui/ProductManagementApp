@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Backend.Application.Contracts/Backend.Application.Contracts.csproj" />
+    <Project Path="src/Backend.Application/Backend.Application.csproj" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Project Path="src/Backend.DbMigrator/Backend.DbMigrator.csproj" />
+    <Project Path="src/Backend.Domain.Shared/Backend.Domain.Shared.csproj" />
+    <Project Path="src/Backend.Domain/Backend.Domain.csproj" />
+    <Project Path="src/Backend.EntityFrameworkCore/Backend.EntityFrameworkCore.csproj" />
+    <Project Path="src/Backend.HttpApi.Client/Backend.HttpApi.Client.csproj" />
+    
+    <Project Path="src/Backend.HttpApi.Host/Backend.HttpApi.Host.csproj" />
+    <Project Path="src/Backend.HttpApi/Backend.HttpApi.csproj" />
+    
+    
+    
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Backend.Application.Tests/Backend.Application.Tests.csproj" />
+    <Project Path="test/Backend.Domain.Tests/Backend.Domain.Tests.csproj" />
+    <Project Path="test/Backend.EntityFrameworkCore.Tests/Backend.EntityFrameworkCore.Tests.csproj" />
+    <Project Path="test/Backend.HttpApi.Client.ConsoleTestApp/Backend.HttpApi.Client.ConsoleTestApp.csproj" />
+    
+    <Project Path="test/Backend.TestBase/Backend.TestBase.csproj" />
+    
+  </Folder>
+</Solution>
