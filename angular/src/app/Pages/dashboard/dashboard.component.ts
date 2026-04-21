@@ -4,10 +4,11 @@ import { inject } from '@angular/core';
 import { BillDto, ProductDto } from '@proxy/dtos';
 import { BillService } from '@proxy';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 
