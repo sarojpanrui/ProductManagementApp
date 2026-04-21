@@ -14,6 +14,7 @@ import { BillDto, ProductDto } from '@proxy/dtos';
 import { ProductServicesService } from '@proxy';
 import { ModalComponent } from '@abp/ng.theme.shared';
 import { FormsModule } from '@angular/forms';
+import { ToasterService } from '@abp/ng.theme.shared';
 
 @Component({
   selector: 'app-generate-bill',
@@ -30,6 +31,7 @@ export class GenerateBillComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly billService = inject(BillService);
   private readonly productService = inject(ProductServicesService)
+  private readonly toast=inject(ToasterService)
 
   bills: BillDto[] = [];
   form!: FormGroup;
@@ -68,7 +70,7 @@ export class GenerateBillComponent implements OnInit {
     if (this.form.invalid) return;
 
     this.billService.create(this.form.value).subscribe(() => {
-      console.log('Bill added...');
+      this.toast.success('Bill added...');
       this.fetchBills(); // refresh list after create
 
       this.form.reset({

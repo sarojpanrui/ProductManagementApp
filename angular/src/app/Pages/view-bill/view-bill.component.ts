@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { ViewChild, ElementRef } from '@angular/core';
 
 interface SelectedProduct {
   id: string;
@@ -56,9 +57,11 @@ export class ViewBillComponent {
 
 
 
-  printInvoice(): void {
-    window.print();
-  }
+  // printInvoice(): void {
+  //   window.print();
+  // }
+
+
   downloadPDF(): void {
     const element = document.getElementById('invoice');
 
@@ -74,7 +77,7 @@ export class ViewBillComponent {
 
       pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, imgHeight);
 
-      // pdf.save(`invoice-${this.bill.id}.pdf`);
+      pdf.save(`invoice.pdf`);
     });
   }
 }

@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
 import { ModalComponent } from '@abp/ng.theme.shared';
 import { FormsModule } from '@angular/forms';
 import { ProductServicesService } from '@proxy';
+import { ToasterService } from '@abp/ng.theme.shared';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class BillComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly billService = inject(BillService);
   private readonly productService=inject(ProductServicesService)
+  private readonly toast=inject(ToasterService)
+
   bills: BillDto[] = [];
 
 
@@ -64,7 +67,7 @@ export class BillComponent implements OnInit {
     if (this.form.invalid) return;
 
     this.billService.create(this.form.value).subscribe(() => {
-      console.log('Bill added...');
+      this.toast.success('Bill added...');
 
       this.form.reset({
         customer: '',

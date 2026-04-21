@@ -21,6 +21,7 @@ import {
   Validators
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { ToasterService } from '@abp/ng.theme.shared';
 
 
 
@@ -48,6 +49,7 @@ export class BillCardComponent {
   private readonly fb = inject(FormBuilder);
   private readonly billService = inject(BillService);
   private readonly confirmation = inject(ConfirmationService);
+  private readonly toast=inject(ToasterService)
 
   constructor() {
     this.form = this.fb.group({
@@ -69,6 +71,7 @@ export class BillCardComponent {
       .subscribe(status => {
         if (status === Confirmation.Status.confirm) {
           this.billService.delete(id).subscribe(() => {
+            this.toast.success("Deleted Successfully")
             this.deleted.emit();
           });
         }
@@ -99,6 +102,7 @@ export class BillCardComponent {
 
   this.billService.update(id, this.form.value).subscribe(() => {
     this.isOpen = false;
+    this.toast.success("update successfully")
     this.updated.emit();
   });
 }

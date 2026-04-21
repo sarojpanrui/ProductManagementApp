@@ -7,6 +7,7 @@ import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
 import { ModalComponent } from '@abp/ng.theme.shared';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToasterService } from '@abp/ng.theme.shared';
 
 @Component({
   selector: 'app-product',
@@ -19,6 +20,7 @@ export class ProductComponent implements OnInit {
   readonly productServices = inject(ProductServicesService);
   private confirmation = inject(ConfirmationService);
   private readonly fb = inject(FormBuilder);
+  toast = inject(ToasterService)
 
   isOpen: boolean = false;
   isEditOpen: boolean = false;
@@ -57,6 +59,7 @@ export class ProductComponent implements OnInit {
       .subscribe(status => {
         if (status === Confirmation.Status.confirm) {
           this.productServices.deleteProduct(id).subscribe(() => {
+            this.toast.success("Deleted Successfully")
             this.fetchProduct();
           });
         }
@@ -93,6 +96,7 @@ export class ProductComponent implements OnInit {
     if (this.form.invalid) return;
 
     this.productServices.createProduct(this.form.value).subscribe(() => {
+      this.toast.success("Product added successfully")
       this.fetchProduct();
       this.closeForm();
 

@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-4 ">
   <div class="row g-4">
 
 
@@ -7,8 +7,8 @@
       <div class="card dashboard-card bg-primary h-100">
         <div class="card-body d-flex justify-content-between align-items-center">
           <div>
-            <h6>Total Products</h6>
-            <h2>{{ product_count }}</h2>
+            <h6 class="text-white">Total Products</h6>
+            <h2 class="text-white">{{ product_count }}</h2>
           </div>
           <div class="icon-box">
             <i class="bi bi-box-seam"></i>
@@ -21,12 +21,20 @@
     <div class="col-12 col-md-3">
       <div class="card dashboard-card bg-success h-100">
         <div class="card-body d-flex justify-content-between align-items-center">
-          <div>
+          <div  class="text-white">
             <h6>Total Bills</h6>
             <h2>{{ bill_count }}</h2>
           </div>
           <div class="icon-box">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket-icon lucide-ticket"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-ticket-icon lucide-ticket">
+              <path
+                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+              <path d="M13 5v2" />
+              <path d="M13 17v2" />
+              <path d="M13 11v2" />
+            </svg>
           </div>
         </div>
       </div>
@@ -38,7 +46,7 @@
         <div class="card-body">
 
           <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6>Total Income</h6>
+            <h6  class="text-white">Total Income</h6>
 
             <select class="form-select form-select-sm w-auto" [(ngModel)]="dateFilter" (change)="fetchBills()">
               <option value="all">All</option>
@@ -48,8 +56,8 @@
             </select>
           </div>
 
-          <h2>₹ {{ total_bill_amount }}</h2>
-          <small>{{ bill_count }} bills</small>
+          <h2  class="text-white">₹ {{ total_bill_amount }}</h2>
+          <small  class="text-white">{{ bill_count }} bills</small>
 
         </div>
       </div>
@@ -59,12 +67,19 @@
     <div class="col-12 col-md-3">
       <div class="card dashboard-card bg-info h-100">
         <div class="card-body d-flex justify-content-between align-items-center">
-          <div>
+          <div  class="text-white">
             <h6>Total Customers</h6>
             <h2>{{ customer_count }}</h2>
           </div>
           <div class="icon-box">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-users-icon lucide-users">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
           </div>
         </div>
       </div>
@@ -81,71 +96,71 @@
 <div class="container mt-4">
   <div class="row g-4">
 
-   <!-- Recent Products -->
-<div class="col-12 col-lg-4">
-  <div class="card dashboard-list-card h-100">
+    <!-- Recent Products -->
+    <div class="col-12 col-lg-4">
+      <div class="card dashboard-list-card h-100">
 
-    <div class="card-header bg-primary">
-      <i class="bi bi-box-seam me-2"></i> Recent Products
-      <span class="badge bg-light text-dark float-end">
-        {{ recentProducts?.length || 0 }}
-      </span>
-    </div>
+        <div class="card-header bg-primary">
+          <i class="bi bi-box-seam me-2"></i> Recent Products
+          <span class="badge bg-light text-dark float-end">
+            {{ recentProducts?.length || 0 }}
+          </span>
+        </div>
 
-    <div class="card-body list-body">
-      @if (recentProducts?.length > 0) {
-        @for (item of recentProducts; track item.id) {
+        <div class="card-body list-body">
+          @if (recentProducts?.length > 0) {
+          @for (item of recentProducts; track item.id) {
           <div class="list-item d-flex justify-content-between">
             <span>{{ item.name }}</span>
             <span class="price text-primary">₹{{ item.price }}</span>
           </div>
-        }
-      } @else {
-        <div class="empty-state">No products found</div>
-      }
+          }
+          } @else {
+          <div class="empty-state">No products found</div>
+          }
+        </div>
+
+      </div>
     </div>
 
-  </div>
-</div>
+    <!-- Recent Bills -->
+    <div class="col-12 col-lg-4">
+      <div class="card dashboard-list-card h-100">
 
-<!-- Recent Bills -->
-<div class="col-12 col-lg-4">
-  <div class="card dashboard-list-card h-100">
+        <div class="card-header bg-success">
+          <i class="bi bi-receipt me-2"></i> Recent Bills
+          <span class="badge bg-light text-dark float-end">
+            {{ recentBills?.length || 0 }}
+          </span>
+        </div>
 
-    <div class="card-header bg-success">
-      <i class="bi bi-receipt me-2"></i> Recent Bills
-      <span class="badge bg-light text-dark float-end">
-        {{ recentBills?.length || 0 }}
-      </span>
-    </div>
-
-    <div class="card-body list-body">
-      @if (recentBills?.length > 0) {
-        @for (item of recentBills; track item.id) {
+        <div class="card-body list-body">
+          @if (recentBills?.length > 0) {
+          @for (item of recentBills; track item.id) {
           <div class="list-item d-flex justify-content-between">
             <span>{{ item.customer }}</span>
             <span class="price text-success">₹{{ item.totalAmount }}</span>
           </div>
-        }
-      } @else {
-        <div class="empty-state">No bills found</div>
-      }
+          }
+          } @else {
+          <div class="empty-state">No bills found</div>
+          }
+        </div>
+
+      </div>
     </div>
 
-  </div>
-</div>
+    <!-- Top Customers -->
+    <div class="col-12 col-lg-4">
+      <div class="card dashboard-list-card h-100">
 
-<!-- Top Customers -->
-<div class="col-12 col-lg-4">
-  <div class="card dashboard-list-card h-100">
+        <div class="card-header bg-info">
+          <i class="bi bi-people me-2"></i> Top Customers
+        </div>
 
-    <div class="card-header bg-info">
-      <i class="bi bi-people me-2"></i> Top Customers
-    </div>
-
-    <div class="card-body list-body">
-      @if (customerSummary?.length > 0) {
-        @for (c of customerSummary; track c.name; let i = $index) {
+        <div class="card-body list-body">
+          @if (customerSummary?.length > 0) {
+          @for (c of customerSummary; track c.name; let i = $index) {
           <div class="list-item d-flex justify-content-between align-items-center">
 
             <div>
@@ -155,14 +170,14 @@
 
             <span class="price text-success">₹{{ c.total }}</span>
           </div>
-        }
-      } @else {
-        <div class="empty-state">No data found</div>
-      }
-    </div>
+          }
+          } @else {
+          <div class="empty-state">No data found</div>
+          }
+        </div>
 
-  </div>
-</div>
+      </div>
+    </div>
 
   </div>
 </div>

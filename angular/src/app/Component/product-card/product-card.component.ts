@@ -15,6 +15,7 @@ import {
   Validators
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ToasterService } from '@abp/ng.theme.shared';
 
 @Component({
   selector: 'app-product-card',
@@ -37,6 +38,7 @@ export class ProductCardComponent implements OnInit {
 
   readonly productServices = inject(ProductServicesService);
   private readonly fb = inject(FormBuilder);
+  private readonly toast=inject(ToasterService)
 
   isOpen = false;
   form!: FormGroup;
@@ -81,6 +83,7 @@ export class ProductCardComponent implements OnInit {
 
     this.productServices.updateProduct(id, this.form.value).subscribe(() => {
       this.isOpen = false;
+      this.toast.success("update successfully")
       this.updated.emit();
     });
   }
