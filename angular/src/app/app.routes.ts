@@ -4,6 +4,7 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { BillComponent } from './Pages/bill/bill.component';
 import { GenerateBillComponent } from './Pages/generate-bill/generate-bill.component';
 import { ViewBillComponent } from './Pages/view-bill/view-bill.component';
+import { UserComponent } from './Pages/user/user.component';
 
 export const appRoutes: Routes = [
  {
@@ -25,6 +26,10 @@ export const appRoutes: Routes = [
   {
     path:'viewbill/:id',
     component:ViewBillComponent
+  },
+  {
+    path:'user',
+    component:UserComponent
   }
   
 ];

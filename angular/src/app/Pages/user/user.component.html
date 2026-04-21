@@ -1,0 +1,87 @@
+<nav class="sticky-header bg-white shadow-sm px-3 py-3 mb-3">
+
+  <div class="container-fluid">
+    <div class="row align-items-center g-2">
+
+      <!-- Title -->
+      <div class="col-12 col-md-auto">
+        <h4 class="fw-bold text-primary m-0 text-center text-md-start">
+         MyCustomers
+        </h4>
+      </div>
+
+      <!-- Search Box -->
+      <div class="col-12 col-md">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="fas fa-search text-muted"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control border-start-0"
+            placeholder="Search customer..."
+            [(ngModel)]="searchText"
+          />
+          
+        </div>
+      </div>
+
+      <!-- Clear Button -->
+      <div class="col-12 col-md-auto text-end">
+        <button
+          class="btn btn-outline-secondary rounded-pill px-3 w-100 w-md-auto"
+          (click)="searchText=''"
+        >
+          Clear
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</nav>
+
+<div class="container mt-3">
+
+  <div class="card border-0 shadow-sm rounded-4">
+
+    <!-- Scrollable Body -->
+    <div class="card-body p-0">
+
+      <div class="customer-scroll">
+
+        @if (filteredCustomers.length > 0) {
+          @for (c of filteredCustomers; track c.name) {
+
+            <div class="d-flex justify-content-between align-items-center px-3 py-3 border-bottom user-card">
+
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar">
+                  {{ c.name.charAt(0).toUpperCase() }}
+                </div>
+
+                <div>
+                  <div class="fw-semibold">{{ c.name }}</div>
+                  <small class="text-muted">Customer</small>
+                </div>
+              </div>
+
+              <div class="text-success fw-bold">
+                ₹ {{ c.total }}
+              </div>
+
+            </div>
+
+          }
+        } @else {
+          <div class="text-center text-muted py-4">
+            No customers found
+          </div>
+        }
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

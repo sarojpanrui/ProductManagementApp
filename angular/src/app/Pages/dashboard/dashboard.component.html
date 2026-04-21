@@ -1,128 +1,168 @@
 <div class="container my-4">
   <div class="row g-4">
 
-    <!-- Products -->
-    <div class="col-12 col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
-        <div class="card-body d-flex align-items-center gap-3">
-          <div class="icon-box bg-primary-subtle text-primary">
-            
-          </div>
+
+    <!-- product count -->
+    <div class="col-12 col-md-3">
+      <div class="card dashboard-card bg-primary h-100">
+        <div class="card-body d-flex justify-content-between align-items-center">
           <div>
-            <h6 class="text-muted mb-1">Total Products</h6>
-            <h3 class="fw-bold mb-0 fs-1 text-primary">{{ product_count }}</h3>
+            <h6>Total Products</h6>
+            <h2>{{ product_count }}</h2>
+          </div>
+          <div class="icon-box">
+            <i class="bi bi-box-seam"></i>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Bills -->
-    <div class="col-12 col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
-        <div class="card-body d-flex align-items-center gap-3">
-          <div class="icon-box bg-success-subtle text-success">
-            
-          </div>
+    <!-- bill count -->
+    <div class="col-12 col-md-3">
+      <div class="card dashboard-card bg-success h-100">
+        <div class="card-body d-flex justify-content-between align-items-center">
           <div>
-            <h6 class="text-muted mb-1">Total Bills</h6>
-            <h3 class="fw-bold mb-0 fs-1 text-warning">{{ bill_count }}</h3>
+            <h6>Total Bills</h6>
+            <h2>{{ bill_count }}</h2>
+          </div>
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket-icon lucide-ticket"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Income -->
-    <div class="col-12 col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
+    <div class="col-12 col-md-3">
+      <div class="card dashboard-card bg-warning h-100">
         <div class="card-body">
 
           <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="d-flex align-items-center gap-2">
-              <div class="icon-box bg-warning-subtle text-warning">
-                
-              </div>
-              <h6 class="text-muted mb-0">Total Income</h6>
-            </div>
+            <h6>Total Income</h6>
 
-            <select
-              class="form-select form-select-sm w-auto"
-              [(ngModel)]="dateFilter"
-              (change)="fetchBills()"
-            >
+            <select class="form-select form-select-sm w-auto" [(ngModel)]="dateFilter" (change)="fetchBills()">
               <option value="all">All</option>
               <option value="today">Today</option>
               <option value="month">This Month</option>
               <option value="year">This Year</option>
             </select>
-
-
           </div>
 
-          <h2 class="fw-bold text-success mb-1">
-            ₹ {{ total_bill_amount }}
-          </h2>
-
-          <small class="text-muted">
-            {{ bill_count }} bills
-          </small>
+          <h2>₹ {{ total_bill_amount }}</h2>
+          <small>{{ bill_count }} bills</small>
 
         </div>
       </div>
     </div>
+
+    <!-- total customer -->
+    <div class="col-12 col-md-3">
+      <div class="card dashboard-card bg-info h-100">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div>
+            <h6>Total Customers</h6>
+            <h2>{{ customer_count }}</h2>
+          </div>
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
 
   </div>
 </div>
 
 
-<div class="container">
+<div class="container mt-4">
   <div class="row g-4">
 
-    <!-- Recent Products -->
-    <div class="col-12 col-lg-6">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
-        <div class="card-body">
+   <!-- Recent Products -->
+<div class="col-12 col-lg-4">
+  <div class="card dashboard-list-card h-100">
 
-          <h5 class="fw-bold mb-3"> Recent Products</h5>
-
-          @if (recentProducts?.length > 0) {
-            @for (item of recentProducts; track item.id) {
-              <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                <span class="fw-medium">{{ item.name }}</span>
-                <span class="text-primary fw-semibold">₹{{ item.price }}</span>
-              </div>
-            }
-          } @else {
-            <div class="text-muted">No products found</div>
-          }
-
-        </div>
-      </div>
+    <div class="card-header bg-primary">
+      <i class="bi bi-box-seam me-2"></i> Recent Products
+      <span class="badge bg-light text-dark float-end">
+        {{ recentProducts?.length || 0 }}
+      </span>
     </div>
 
-    <!-- Recent Bills -->
-    <div class="col-12 col-lg-6">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
-        <div class="card-body">
-
-          <h5 class="fw-bold mb-3"> Recent Bills</h5>
-
-          @if (recentBills?.length > 0) {
-            @for (item of recentBills; track item.id) {
-              <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                <span class="fw-medium">{{ item.customer }}</span>
-                <span class="text-success fw-bold">₹{{ item.totalAmount }}
-                   
-                </span>
-                
-              </div>
-            }
-          } @else {
-            <div class="text-muted">No bills found</div>
-          }
-
-        </div>
-      </div>
+    <div class="card-body list-body">
+      @if (recentProducts?.length > 0) {
+        @for (item of recentProducts; track item.id) {
+          <div class="list-item d-flex justify-content-between">
+            <span>{{ item.name }}</span>
+            <span class="price text-primary">₹{{ item.price }}</span>
+          </div>
+        }
+      } @else {
+        <div class="empty-state">No products found</div>
+      }
     </div>
+
+  </div>
+</div>
+
+<!-- Recent Bills -->
+<div class="col-12 col-lg-4">
+  <div class="card dashboard-list-card h-100">
+
+    <div class="card-header bg-success">
+      <i class="bi bi-receipt me-2"></i> Recent Bills
+      <span class="badge bg-light text-dark float-end">
+        {{ recentBills?.length || 0 }}
+      </span>
+    </div>
+
+    <div class="card-body list-body">
+      @if (recentBills?.length > 0) {
+        @for (item of recentBills; track item.id) {
+          <div class="list-item d-flex justify-content-between">
+            <span>{{ item.customer }}</span>
+            <span class="price text-success">₹{{ item.totalAmount }}</span>
+          </div>
+        }
+      } @else {
+        <div class="empty-state">No bills found</div>
+      }
+    </div>
+
+  </div>
+</div>
+
+<!-- Top Customers -->
+<div class="col-12 col-lg-4">
+  <div class="card dashboard-list-card h-100">
+
+    <div class="card-header bg-info">
+      <i class="bi bi-people me-2"></i> Top Customers
+    </div>
+
+    <div class="card-body list-body">
+      @if (customerSummary?.length > 0) {
+        @for (c of customerSummary; track c.name; let i = $index) {
+          <div class="list-item d-flex justify-content-between align-items-center">
+
+            <div>
+              <span class="rank">{{ i + 1 }}</span>
+              {{ c.name }}
+            </div>
+
+            <span class="price text-success">₹{{ c.total }}</span>
+          </div>
+        }
+      } @else {
+        <div class="empty-state">No data found</div>
+      }
+    </div>
+
+  </div>
+</div>
 
   </div>
 </div>

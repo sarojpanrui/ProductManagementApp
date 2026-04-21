@@ -1,0 +1,66 @@
+/* Card */
+.bill-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.bill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* Avatar */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Amount badge */
+.amount-badge {
+  background: #e6f7ee;
+  color: #198754;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* Product box */
+.product-box {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Buttons */
+.btn-light-danger {
+  background: #fdecea;
+  color: #dc3545;
+}
+
+.btn-light-primary {
+  background: #e7f1ff;
+  color: #0d6efd;
+}
+
+.btn-light-success {
+  background: #e6f7ee;
+  color: #198754;
+}
+
+.btn-light-danger:hover,
+.btn-light-primary:hover,
+.btn-light-success:hover {
+  filter: brightness(0.95);
+}

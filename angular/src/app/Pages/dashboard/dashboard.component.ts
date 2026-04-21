@@ -25,10 +25,12 @@ export class DashboardComponent {
   product_count: number = 0;
   bill_count: number = 0;
   total_bill_amount: number = 0;
+  customer_count: number = 0;
 
   ngOnInit() {
     this.fetchProducts();
     this.fetchBills();
+    this.fetchCustomer()
   }
 
   fetchProducts() {
@@ -77,7 +79,7 @@ export class DashboardComponent {
         return billDate.getFullYear() === now.getFullYear();
       }
 
-      return true; 
+      return true;
     });
   }
 
@@ -102,6 +104,43 @@ export class DashboardComponent {
           new Date(a.createTime ?? '').getTime()
         )
         .slice(0, 5);
+      this.extractTop5CustomerExpenditure(filtered);
+    });
+  }
+
+  customerSummary: { name: string; total: number }[] = [];
+
+  extractTop5CustomerExpenditure(bills: BillDto[]) {
+    const map = new Map<string, number>();
+
+    bills.forEach(b => {
+      const name = b.customer?.trim();
+      if (!name) return;
+
+      map.set(name, (map.get(name) || 0) + (b.totalAmount || 0));
+    });
+
+    this.customerSummary = Array.from(map, ([name, total]) => ({
+      name,
+      total
+    }))
+      .sort((a, b) => b.total - a.total)
+      .slice(0, 5);
+  }
+
+  fetchCustomer() {
+    this.billService.getList().subscribe(res => {
+
+      const bills = res;
+
+      // Extract unique customer names
+      const uniqueCustomers = new Set(
+        bills.map(b => b.customer)
+      );
+
+      this.customer_count = uniqueCustomers.size;
+      console.log(this.customer_count)
+
     });
   }
 

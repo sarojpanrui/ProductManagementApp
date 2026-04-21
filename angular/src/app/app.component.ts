@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { InternetConnectionStatusComponent, LoaderBarComponent } from '@abp/ng.theme.shared';
 import { DynamicLayoutComponent } from '@abp/ng.core';
-import {inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { RoutesService, eLayoutType } from '@abp/ng.core';
 
 @Component({
@@ -14,7 +14,7 @@ import { RoutesService, eLayoutType } from '@abp/ng.core';
   imports: [LoaderBarComponent, DynamicLayoutComponent, InternetConnectionStatusComponent],
 })
 export class AppComponent {
-   private routes = inject(RoutesService);
+  private routes = inject(RoutesService);
 
   constructor() {
     //  remove default menu items first
@@ -44,13 +44,20 @@ export class AppComponent {
         layout: eLayoutType.application,
       },
       {
-        path:'/generateBill',
-        name:'GenerateBill',
-       iconClass: 'fas fa-file-invoice-dollar',
+        path: '/generateBill',
+        name: 'GenerateBill',
+        iconClass: 'fas fa-file-invoice-dollar',
         order: 3,
         layout: eLayoutType.application,
-
+      },
+      {
+        path:'/user',
+        name:'MyCustomers',
+        iconClass: 'fas fa-user-cog',
+        order: 3,
+        layout: eLayoutType.application,
       }
+      
     ]);
   }
 }
