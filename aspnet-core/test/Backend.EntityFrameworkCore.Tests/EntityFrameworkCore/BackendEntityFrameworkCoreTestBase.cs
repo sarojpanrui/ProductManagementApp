@@ -1,6 +1,4 @@
-﻿using Volo.Abp;
-
-namespace Backend.EntityFrameworkCore;
+﻿namespace Backend.EntityFrameworkCore;
 
 public abstract class BackendEntityFrameworkCoreTestBase : BackendTestBase<BackendEntityFrameworkCoreTestModule>
 {

@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BillService } from '@proxy';
-import { BillDto, ProductDto } from '@proxy/dtos';
+// import { BillDto, ProductDto } from '@proxy/dtos';
+import { BillDto } from '@proxy/dtos/bill';
+import { ProductDto } from '@proxy/dtos/product';
 import { DatePipe } from '@angular/common';
 
 import html2canvas from 'html2canvas';

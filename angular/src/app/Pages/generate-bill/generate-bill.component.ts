@@ -10,7 +10,8 @@ import {
   CardComponent,
   CardBodyComponent
 } from '@abp/ng.theme.shared';
-import { BillDto, ProductDto } from '@proxy/dtos';
+import { BillDto } from '@proxy/dtos/bill';
+import { ProductDto } from '@proxy/dtos/product';
 import { ProductServicesService } from '@proxy';
 import { ModalComponent } from '@abp/ng.theme.shared';
 import { FormsModule } from '@angular/forms';

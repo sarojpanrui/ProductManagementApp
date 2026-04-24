@@ -1,0 +1,156 @@
+<div class="container mt-4">
+
+  <!-- Navbar -->
+  <nav class="navbar bg-white shadow-sm px-4 py-3 rounded-4 mb-4 sticky-top">
+
+    <div class="container-fluid d-flex justify-content-between flex-wrap gap-3">
+
+      <h3 class="fw-bold text-primary m-0">Orders</h3>
+
+      <!-- Search -->
+      <div class="input-group" style="max-width: 350px;">
+        <input type="text"
+               class="form-control rounded-pill"
+               placeholder="Search orders..."
+               [(ngModel)]="searchText" />
+
+        <button class="btn btn-outline-secondary rounded-pill"
+                (click)="searchText=''">
+          Clear
+        </button>
+      </div>
+
+      <button class="btn btn-primary rounded-pill px-4"
+              (click)="OpenModal()">
+        + Add Order
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Orders -->
+  <div class="row g-3">
+
+    @for (order of filterOrder; track order.id) {
+      <div class="col-12 col-md-6 col-lg-4">
+        <app-order-card
+          [order]="order"
+          (received)="fetchOrder()"
+          (deleted)="fetchOrder()">
+        </app-order-card>
+      </div>
+    }
+
+    @if (filterOrder.length === 0) {
+      <div class="text-center text-muted mt-4">
+        No orders found
+      </div>
+    }
+
+  </div>
+
+</div>
+
+<!-- ================= MODAL ================= -->
+
+<abp-modal [(visible)]="isModalOpen">
+
+  <ng-template #abpHeader>
+    <h4 class="fw-bold text-primary">Add Order</h4>
+  </ng-template>
+
+  <ng-template #abpBody>
+
+    <form [formGroup]="form" class="row g-3">
+
+      <!-- Vendor -->
+      <div class="col-12">
+        <label class="form-label">Vendor Name</label>
+        <input class="form-control" formControlName="vendorName" />
+      </div>
+
+      <!-- Product Select -->
+      <div class="col-12">
+
+        <label class="form-label">
+          Purchased Products ({{ selectedProducts.length }})
+        </label>
+
+        <!-- Tags -->
+        <div class="form-control d-flex flex-wrap gap-2" style="min-height:45px;">
+
+          @for (p of selectedProducts; track p.id) {
+            <span class="badge bg-primary">
+              {{ p.name }}
+              <span class="ms-2" style="cursor:pointer" (click)="removeProduct(p)">✕</span>
+            </span>
+          }
+
+          @if (selectedProducts.length === 0) {
+            <span class="text-muted">Select products...</span>
+          }
+
+        </div>
+
+        <!-- Search -->
+        <input class="form-control mt-2"
+               placeholder="Search product..."
+               [(ngModel)]="productSearch"
+               [ngModelOptions]="{standalone:true}" />
+
+        <!-- Dropdown -->
+        <div class="border rounded mt-2 p-2" style="max-height:200px; overflow-y:auto;">
+
+          @for (p of filteredProductList; track p.id) {
+            <div class="dropdown-item"
+                 style="cursor:pointer"
+                 (click)="addProduct(p)">
+              {{ p.name }} (₹{{p.price}})
+            </div>
+          }
+
+          @if (filteredProductList.length === 0) {
+            <div class="text-muted text-center py-2">
+              No products found
+            </div>
+          }
+
+        </div>
+
+      </div>
+
+      <!-- Total -->
+      <div class="col-6">
+        <label>Total Amount</label>
+        <input class="form-control" formControlName="totalAmount" readonly />
+      </div>
+
+      <!-- Dates -->
+      <div class="col-6">
+        <label>Order Date</label>
+        <input type="date" class="form-control" formControlName="orderDate" />
+      </div>
+
+      <div class="col-6">
+        <label>Delivery Date</label>
+        <input type="date" class="form-control" formControlName="deliveryDate" />
+      </div>
+
+      <!-- Hidden Product JSON -->
+      <input type="hidden" formControlName="buyProducts" />
+
+    </form>
+
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <button class="btn btn-secondary" abpClose>Cancel</button>
+
+    <button class="btn btn-primary"
+            [disabled]="form.invalid"
+            (click)="Create()">
+      Save Order
+    </button>
+  </ng-template>
+
+</abp-modal>

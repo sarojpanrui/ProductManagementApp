@@ -1,4 +1,6 @@
-import type { CreateProductDto, ProductDto } from './dtos/models';
+// import type { CreateProductDto, ProductDto } from './dtos/models';
+import { CreateProductDto } from './dtos/product';
+import { ProductDto } from './dtos/product';
 import { RestService, Rest } from '@abp/ng.core';
 import { Injectable, inject } from '@angular/core';
 

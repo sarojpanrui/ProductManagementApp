@@ -1,0 +1,187 @@
+<div class="order-card card border-0 shadow-sm rounded-4 p-3 mb-3">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-start">
+
+    <div>
+      <h5 class="fw-bold mb-1">
+        {{ order?.vendorName }}
+      </h5>
+
+      <small class="text-muted">
+        ID: {{ order?.id }}
+      </small>
+    </div>
+
+    <span class="badge px-3 py-2 rounded-pill" [ngClass]="order?.isReceived ? 'bg-success' : 'bg-warning'">
+      {{ order?.isReceived ? 'Received' : 'Pending' }}
+    </span>
+
+  </div>
+
+  <hr class="my-3">
+
+  <!-- Body -->
+  <div class="row small text-muted">
+
+    <div class="col-6">
+      <p class="mb-1"><strong>Total</strong></p>
+      <h6 class="text-primary fw-bold">₹{{order.totalAmount}}</h6>
+    </div>
+
+    <div class="col-6 text-end">
+      <p class="mb-1"><strong>Order Date</strong></p>
+      <p>{{ order?.orderDate | date:'mediumDate' }}</p>
+    </div>
+
+    <div class="col-6 mt-2">
+      <p class="mb-1"><strong>Delivery</strong></p>
+      <p>{{ order?.deliveryDate | date:'mediumDate' }}</p>
+    </div>
+
+    <div class="col-6 mt-2 text-end">
+      <p class="mb-1"><strong>Items</strong></p>
+      <p>{{ products.length }}</p>
+    </div>
+
+  </div>
+
+  <!-- ✅ Products Section -->
+  <div class="mt-3">
+
+    <p class="mb-1 fw-semibold small text-muted">Products</p>
+
+    <div class="d-flex flex-wrap gap-2">
+
+      @for (p of products.slice(0, 3); track p.id) {
+      <span class="badge bg-light text-dark border">
+        {{ p.name }} (₹{{ p.price }})
+      </span>
+      }
+
+      @if (products.length > 3) {
+      <span class="badge bg-secondary">
+        +{{ products.length - 3 }} more
+      </span>
+      }
+
+      @if (products.length === 0) {
+      <span class="text-muted small">No products</span>
+      }
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+
+    <!-- Status -->
+    <small class="text-muted">
+      {{ order?.isReceived ? 'Completed order' : 'Pending delivery' }}
+    </small>
+
+    <!-- Receive -->
+    <div>
+      <button *ngIf="!order?.isReceived" class="btn btn-success btn-sm rounded-pill px-3" (click)="Received(order.id)">
+        Receive
+      </button>
+
+      <span *ngIf="order?.isReceived" class="text-success fw-semibold small">
+        Done
+      </span>
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex gap-2">
+
+      <button class="btn btn-outline-danger btn-sm" (click)="Delete(order.id)">
+        Delete
+      </button>
+
+      <button class="btn btn-outline-primary btn-sm" (click)="openUpdateForm()">
+        Update
+      </button>
+
+      <button class="btn btn-outline-primary btn-sm"  [routerLink]="['/orderview', order.id]">
+        view
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<abp-modal [(visible)]="isModalOpen">
+
+  <!-- Header -->
+  <ng-template #abpHeader>
+    <h4 class="fw-bold text-primary">Add Order</h4>
+  </ng-template>
+
+  <!-- Body -->
+  <ng-template #abpBody>
+
+    <form [formGroup]="form" class="row g-3">
+
+      <!-- Vendor Name -->
+      <div class="col-12">
+        <label class="form-label">Vendor Name</label>
+        <input type="text" class="form-control" formControlName="vendorName" placeholder="Enter vendor name" />
+      </div>
+
+      <!-- Total Amount -->
+      <div class="col-6">
+        <label class="form-label">Total Amount</label>
+        <input type="number" class="form-control" formControlName="totalAmount" />
+      </div>
+
+      <!-- Order Date -->
+      <div class="col-6">
+        <label class="form-label">Order Date</label>
+        <input type="date" class="form-control" formControlName="orderDate" />
+      </div>
+
+      <!-- Delivery Date -->
+      <div class="col-6">
+        <label class="form-label">Delivery Date</label>
+        <input type="date" class="form-control" formControlName="deliveryDate" />
+      </div>
+
+      <!-- Products -->
+      <div class="col-12">
+        <label class="form-label">Products</label>
+        <input type="text" class="form-control" formControlName="buyProducts" placeholder="Enter products" />
+      </div>
+
+      <!-- Selected Products (Tags UI) -->
+
+
+      <!-- <input type="checkbox" [(ngModel)]="isActive" /> -->
+      <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" formControlName="isReceived" id="isReceived">
+
+        <label class="form-check-label" for="isReceived">
+          Received
+        </label>
+      </div>
+
+
+
+    </form>
+
+  </ng-template>
+
+  <!-- Footer -->
+  <ng-template #abpFooter>
+    <button type="button" class="btn btn-secondary" abpClose>
+      Cancel
+    </button>
+
+    <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="Update(order.id)">
+      Save Order
+    </button>
+  </ng-template>
+
+</abp-modal>

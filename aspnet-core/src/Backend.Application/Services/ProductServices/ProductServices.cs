@@ -1,4 +1,4 @@
-﻿using Backend.DTOs;
+﻿using Backend.DTOs.Product;
 using Backend.Entity;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace Backend
+namespace Backend.Services.ProductServices
 {
     public class ProductServices : ApplicationService, IProductService
     {
@@ -20,13 +20,7 @@ namespace Backend
 
         public async Task<ProductDto> CreateProductAsync(CreateProductDto input)
         {
-            var product = new Product
-            {
-                name = input.Name,
-                description = input.Description,
-                price =(int) input.Price,
-                quantity = input.Quantity
-            };
+            var product = ObjectMapper.Map<CreateProductDto, Product>(input);
 
             await _productRepository.InsertAsync(product);
 
@@ -37,15 +31,11 @@ namespace Backend
         {
             var products = await _productRepository.GetListAsync();
 
-            return products.Select(p => new ProductDto
-            {
-                Id = p.Id.ToString(),
-                name = p.name,
-                description = p.description,
-                price = p.price,
-                quantity = p.quantity,
-                CreateTime = p.CreationTime   
-            }).ToList();
+            return products
+                .Select(p => ObjectMapper.Map<Product, ProductDto>(p))
+                .ToList();
+
+            
         }
 
         public async Task<ProductDto> GetProductByIdAsync(Guid id)
@@ -59,10 +49,7 @@ namespace Backend
         {
             var product = await _productRepository.GetAsync(id);
 
-            product.name = input.Name;
-            product.description = input.Description;
-            product.price =(int) input.Price;
-            product.quantity = input.Quantity;
+            ObjectMapper.Map(input, product);
 
             await _productRepository.UpdateAsync(product);
 

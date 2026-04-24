@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Backend.Localization;
+﻿using Backend.Localization;
 using Volo.Abp.Application.Services;
 
 namespace Backend;

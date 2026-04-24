@@ -12,7 +12,8 @@ import {
   ConfirmationService,
   ModalComponent
 } from '@abp/ng.theme.shared';
-import { BillDto } from '@proxy/dtos';
+// import { BillDto } from '@proxy/dtos';
+import { BillDto } from '@proxy/dtos/bill';
 import { BillService } from '@proxy';
 import {
   ReactiveFormsModule,

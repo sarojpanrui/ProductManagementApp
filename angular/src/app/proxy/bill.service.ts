@@ -1,4 +1,6 @@
-import type { BillDto, CreateBillDto } from './dtos/models';
+// import type { BillDto, CreateBillDto } from './dtos/models';
+import { BillDto } from './dtos/bill';
+import { CreateBillDto } from './dtos/bill';
 import { RestService, Rest } from '@abp/ng.core';
 import { Injectable, inject } from '@angular/core';
 

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BillService } from '@proxy';
-import { BillDto } from '@proxy/dtos';
+import { BillDto } from '@proxy/dtos/bill';
 import { FormsModule } from '@angular/forms';
 
 @Component({

@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductServicesService } from '@proxy';
-import { CreateProductDto, ProductDto } from '@proxy/dtos';
+// import { CreateProductDto, ProductDto } from '@proxy/dtos';
+import { CreateProductDto } from '@proxy/dtos/product';
+import { ProductDto } from '@proxy/dtos/product';
 import { ProductCardComponent } from 'src/app/Component/product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';

@@ -1,5 +1,4 @@
-﻿using Backend.EntityFrameworkCore;
-using Xunit;
+﻿using Xunit;
 
 namespace Backend.EntityFrameworkCore;
 

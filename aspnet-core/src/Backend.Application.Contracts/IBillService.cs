@@ -1,9 +1,7 @@
-﻿using Backend.DTOs;
+﻿using Backend.DTOs.Bill;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 
 
 

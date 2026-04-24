@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
-import { ProductDto } from '@proxy/dtos';
+import { ProductDto } from '@proxy/dtos/product';
 import { ProductServicesService } from '@proxy';
 import {
   CardComponent,

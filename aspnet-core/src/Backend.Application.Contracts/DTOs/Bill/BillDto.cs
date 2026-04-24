@@ -1,8 +1,9 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
 
-namespace Backend.DTOs
+namespace Backend.DTOs.Bill
 {
+
     public class BillDto : EntityDto<Guid>
     {
         public string Id { get; set; }

@@ -1,10 +1,5 @@
 ﻿using Backend.Entity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -68,6 +63,8 @@ public class BackendDbContext :
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Bill> Bills { get; set; }
+    public DbSet<Order> Orders { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -91,18 +88,18 @@ public class BackendDbContext :
 
             b.ConfigureByConvention();
 
-            b.Property(x => x.name)
+            b.Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(100);
 
-            b.Property(x => x.description)
+            b.Property(x => x.Description)
                 .HasMaxLength(500);
 
-            b.Property(x => x.price)
+            b.Property(x => x.Price)
                 .HasPrecision(18, 2)
                 .IsRequired();
 
-            b.Property(x => x.quantity)
+            b.Property(x => x.Quantity)
                 .IsRequired();
         });
 
@@ -124,6 +121,27 @@ public class BackendDbContext :
                 .IsRequired()
                 .HasMaxLength(1000);
 
+        });
+
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable("Orders");
+            b.ConfigureByConvention();
+            b.Property(x => x.VendorName)
+                .IsRequired()
+                .HasMaxLength(500);
+            b.Property(x => x.TotalAmount)
+                .HasPrecision(18, 2)
+                .IsRequired();
+            b.Property(x => x.BuyProducts)
+                .IsRequired()
+                .HasMaxLength(1000);
+            b.Property(x => x.OrderDate)
+                .IsRequired();
+            b.Property(x => x.DeliveryDate)
+                .IsRequired();
+            b.Property(x => x.IsReceived)
+                .IsRequired();
         });
     }
 }

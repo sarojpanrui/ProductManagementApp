@@ -56,6 +56,13 @@ export class AppComponent {
         iconClass: 'fas fa-user-cog',
         order: 3,
         layout: eLayoutType.application,
+      },
+      {
+        path:'/order',
+        name:'Orders',
+        iconClass: 'fas fa-clipboard-list',
+        order:3,
+        layout:eLayoutType.application,
       }
       
     ]);

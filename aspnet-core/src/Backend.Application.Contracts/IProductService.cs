@@ -1,4 +1,4 @@
-﻿using Backend.DTOs;
+﻿using Backend.DTOs.Product;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -5,6 +5,8 @@ import { BillComponent } from './Pages/bill/bill.component';
 import { GenerateBillComponent } from './Pages/generate-bill/generate-bill.component';
 import { ViewBillComponent } from './Pages/view-bill/view-bill.component';
 import { UserComponent } from './Pages/user/user.component';
+import { OrderComponent } from './Pages/order/order.component';
+import { OrderViewComponent } from './Pages/order-view/order-view.component';
 
 export const appRoutes: Routes = [
  {
@@ -30,6 +32,14 @@ export const appRoutes: Routes = [
   {
     path:'user',
     component:UserComponent
+  },
+  {
+    path:'order',
+    component:OrderComponent
+  },
+  {
+    path:'orderview/:id',
+    component:OrderViewComponent
   }
   
 ];

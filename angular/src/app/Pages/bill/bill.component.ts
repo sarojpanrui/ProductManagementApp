@@ -10,7 +10,7 @@ import {
   CardComponent,
   CardBodyComponent
 } from '@abp/ng.theme.shared';
-import { BillDto } from '@proxy/dtos';
+import { BillDto } from '@proxy/dtos/bill';
 import { BillCardComponent } from 'src/app/Component/bill-card/bill-card.component';
 import { RouterLink } from '@angular/router';
 import { ModalComponent } from '@abp/ng.theme.shared';

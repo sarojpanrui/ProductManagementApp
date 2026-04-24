@@ -889,13 +889,13 @@
       "rootPath": "app",
       "remoteServiceName": "Default",
       "controllers": {
-        "Backend.BillService": {
+        "Backend.Services.BillServices.BillService": {
           "controllerName": "Bill",
           "controllerGroupName": "Bill",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "Backend.BillService",
+          "type": "Backend.Services.BillServices.BillService",
           "interfaces": [
             {
               "type": "Backend.IBillService",
@@ -914,16 +914,16 @@
                     }
                   ],
                   "returnValue": {
-                    "type": "Backend.DTOs.BillDto",
-                    "typeSimple": "Backend.DTOs.BillDto"
+                    "type": "Backend.DTOs.Bill.BillDto",
+                    "typeSimple": "Backend.DTOs.Bill.BillDto"
                   }
                 },
                 {
                   "name": "GetListAsync",
                   "parametersOnMethod": [],
                   "returnValue": {
-                    "type": "System.Collections.Generic.List<Backend.DTOs.BillDto>",
-                    "typeSimple": "[Backend.DTOs.BillDto]"
+                    "type": "System.Collections.Generic.List<Backend.DTOs.Bill.BillDto>",
+                    "typeSimple": "[Backend.DTOs.Bill.BillDto]"
                   }
                 },
                 {
@@ -931,16 +931,16 @@
                   "parametersOnMethod": [
                     {
                       "name": "bill",
-                      "typeAsString": "Backend.DTOs.CreateBillDto, Backend.Application.Contracts",
-                      "type": "Backend.DTOs.CreateBillDto",
-                      "typeSimple": "Backend.DTOs.CreateBillDto",
+                      "typeAsString": "Backend.DTOs.Bill.CreateBillDto, Backend.Application.Contracts",
+                      "type": "Backend.DTOs.Bill.CreateBillDto",
+                      "typeSimple": "Backend.DTOs.Bill.CreateBillDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "Backend.DTOs.BillDto",
-                    "typeSimple": "Backend.DTOs.BillDto"
+                    "type": "Backend.DTOs.Bill.BillDto",
+                    "typeSimple": "Backend.DTOs.Bill.BillDto"
                   }
                 },
                 {
@@ -956,16 +956,16 @@
                     },
                     {
                       "name": "bill",
-                      "typeAsString": "Backend.DTOs.CreateBillDto, Backend.Application.Contracts",
-                      "type": "Backend.DTOs.CreateBillDto",
-                      "typeSimple": "Backend.DTOs.CreateBillDto",
+                      "typeAsString": "Backend.DTOs.Bill.CreateBillDto, Backend.Application.Contracts",
+                      "type": "Backend.DTOs.Bill.CreateBillDto",
+                      "typeSimple": "Backend.DTOs.Bill.CreateBillDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "Backend.DTOs.BillDto",
-                    "typeSimple": "Backend.DTOs.BillDto"
+                    "type": "Backend.DTOs.Bill.BillDto",
+                    "typeSimple": "Backend.DTOs.Bill.BillDto"
                   }
                 },
                 {
@@ -1020,8 +1020,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Backend.DTOs.BillDto",
-                "typeSimple": "Backend.DTOs.BillDto"
+                "type": "Backend.DTOs.Bill.BillDto",
+                "typeSimple": "Backend.DTOs.Bill.BillDto"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1036,8 +1036,8 @@
               "parametersOnMethod": [],
               "parameters": [],
               "returnValue": {
-                "type": "System.Collections.Generic.List<Backend.DTOs.BillDto>",
-                "typeSimple": "[Backend.DTOs.BillDto]"
+                "type": "System.Collections.Generic.List<Backend.DTOs.Bill.BillDto>",
+                "typeSimple": "[Backend.DTOs.Bill.BillDto]"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1052,9 +1052,9 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "Backend.DTOs.CreateBillDto, Backend.Application.Contracts",
-                  "type": "Backend.DTOs.CreateBillDto",
-                  "typeSimple": "Backend.DTOs.CreateBillDto",
+                  "typeAsString": "Backend.DTOs.Bill.CreateBillDto, Backend.Application.Contracts",
+                  "type": "Backend.DTOs.Bill.CreateBillDto",
+                  "typeSimple": "Backend.DTOs.Bill.CreateBillDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1064,8 +1064,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Backend.DTOs.CreateBillDto",
-                  "typeSimple": "Backend.DTOs.CreateBillDto",
+                  "type": "Backend.DTOs.Bill.CreateBillDto",
+                  "typeSimple": "Backend.DTOs.Bill.CreateBillDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1074,8 +1074,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Backend.DTOs.BillDto",
-                "typeSimple": "Backend.DTOs.BillDto"
+                "type": "Backend.DTOs.Bill.BillDto",
+                "typeSimple": "Backend.DTOs.Bill.BillDto"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1098,9 +1098,9 @@
                 },
                 {
                   "name": "input",
-                  "typeAsString": "Backend.DTOs.CreateBillDto, Backend.Application.Contracts",
-                  "type": "Backend.DTOs.CreateBillDto",
-                  "typeSimple": "Backend.DTOs.CreateBillDto",
+                  "typeAsString": "Backend.DTOs.Bill.CreateBillDto, Backend.Application.Contracts",
+                  "type": "Backend.DTOs.Bill.CreateBillDto",
+                  "typeSimple": "Backend.DTOs.Bill.CreateBillDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1122,8 +1122,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Backend.DTOs.CreateBillDto",
-                  "typeSimple": "Backend.DTOs.CreateBillDto",
+                  "type": "Backend.DTOs.Bill.CreateBillDto",
+                  "typeSimple": "Backend.DTOs.Bill.CreateBillDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1132,8 +1132,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Backend.DTOs.BillDto",
-                "typeSimple": "Backend.DTOs.BillDto"
+                "type": "Backend.DTOs.Bill.BillDto",
+                "typeSimple": "Backend.DTOs.Bill.BillDto"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1179,13 +1179,358 @@
             }
           }
         },
-        "Backend.ProductServices": {
+        "Backend.Services.OrderServices.OrderService": {
+          "controllerName": "Order",
+          "controllerGroupName": "Order",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Backend.Services.OrderServices.OrderService",
+          "interfaces": [
+            {
+              "type": "Backend.IOrderService",
+              "name": "IOrderService",
+              "methods": [
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Backend.DTOs.Order.OrderDto",
+                    "typeSimple": "Backend.DTOs.Order.OrderDto"
+                  }
+                },
+                {
+                  "name": "GetListAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.List<Backend.DTOs.Order.OrderDto>",
+                    "typeSimple": "[Backend.DTOs.Order.OrderDto]"
+                  }
+                },
+                {
+                  "name": "CreateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "bill",
+                      "typeAsString": "Backend.DTOs.Order.CreateOrderDto, Backend.Application.Contracts",
+                      "type": "Backend.DTOs.Order.CreateOrderDto",
+                      "typeSimple": "Backend.DTOs.Order.CreateOrderDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Backend.DTOs.Order.OrderDto",
+                    "typeSimple": "Backend.DTOs.Order.OrderDto"
+                  }
+                },
+                {
+                  "name": "UpdateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "bill",
+                      "typeAsString": "Backend.DTOs.Order.CreateOrderDto, Backend.Application.Contracts",
+                      "type": "Backend.DTOs.Order.CreateOrderDto",
+                      "typeSimple": "Backend.DTOs.Order.CreateOrderDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Backend.DTOs.Order.OrderDto",
+                    "typeSimple": "Backend.DTOs.Order.OrderDto"
+                  }
+                },
+                {
+                  "name": "DeleteAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string"
+                  }
+                },
+                {
+                  "name": "Received",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "CreateAsyncByOrd": {
+              "uniqueName": "CreateAsyncByOrd",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/app/order",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "ord",
+                  "typeAsString": "Backend.DTOs.Order.CreateOrderDto, Backend.Application.Contracts",
+                  "type": "Backend.DTOs.Order.CreateOrderDto",
+                  "typeSimple": "Backend.DTOs.Order.CreateOrderDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "ord",
+                  "name": "ord",
+                  "jsonName": null,
+                  "type": "Backend.DTOs.Order.CreateOrderDto",
+                  "typeSimple": "Backend.DTOs.Order.CreateOrderDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Backend.DTOs.Order.OrderDto",
+                "typeSimple": "Backend.DTOs.Order.OrderDto"
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "Backend.IOrderService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/order/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.String",
+                "typeSimple": "string"
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "Backend.IOrderService"
+            },
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/app/order/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Backend.DTOs.Order.OrderDto",
+                "typeSimple": "Backend.DTOs.Order.OrderDto"
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "Backend.IOrderService"
+            },
+            "GetListAsync": {
+              "uniqueName": "GetListAsync",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/app/order",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Backend.DTOs.Order.OrderDto>",
+                "typeSimple": "[Backend.DTOs.Order.OrderDto]"
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "Backend.IOrderService"
+            },
+            "ReceivedById": {
+              "uniqueName": "ReceivedById",
+              "name": "Received",
+              "httpMethod": "POST",
+              "url": "api/app/order/{id}/received",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.String",
+                "typeSimple": "string"
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "Backend.IOrderService"
+            },
+            "UpdateAsyncByIdAndOrd": {
+              "uniqueName": "UpdateAsyncByIdAndOrd",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/app/order/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "ord",
+                  "typeAsString": "Backend.DTOs.Order.CreateOrderDto, Backend.Application.Contracts",
+                  "type": "Backend.DTOs.Order.CreateOrderDto",
+                  "typeSimple": "Backend.DTOs.Order.CreateOrderDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "ord",
+                  "name": "ord",
+                  "jsonName": null,
+                  "type": "Backend.DTOs.Order.CreateOrderDto",
+                  "typeSimple": "Backend.DTOs.Order.CreateOrderDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Backend.DTOs.Order.OrderDto",
+                "typeSimple": "Backend.DTOs.Order.OrderDto"
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "Backend.IOrderService"
+            }
+          }
+        },
+        "Backend.Services.ProductServices.ProductServices": {
           "controllerName": "ProductServices",
           "controllerGroupName": "ProductServices",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "Backend.ProductServices",
+          "type": "Backend.Services.ProductServices.ProductServices",
           "interfaces": [
             {
               "type": "Backend.IProductService",
@@ -1196,24 +1541,24 @@
                   "parametersOnMethod": [
                     {
                       "name": "input",
-                      "typeAsString": "Backend.DTOs.CreateProductDto, Backend.Application.Contracts",
-                      "type": "Backend.DTOs.CreateProductDto",
-                      "typeSimple": "Backend.DTOs.CreateProductDto",
+                      "typeAsString": "Backend.DTOs.Product.CreateProductDto, Backend.Application.Contracts",
+                      "type": "Backend.DTOs.Product.CreateProductDto",
+                      "typeSimple": "Backend.DTOs.Product.CreateProductDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "Backend.DTOs.ProductDto",
-                    "typeSimple": "Backend.DTOs.ProductDto"
+                    "type": "Backend.DTOs.Product.ProductDto",
+                    "typeSimple": "Backend.DTOs.Product.ProductDto"
                   }
                 },
                 {
                   "name": "GetProductsAsync",
                   "parametersOnMethod": [],
                   "returnValue": {
-                    "type": "System.Collections.Generic.List<Backend.DTOs.ProductDto>",
-                    "typeSimple": "[Backend.DTOs.ProductDto]"
+                    "type": "System.Collections.Generic.List<Backend.DTOs.Product.ProductDto>",
+                    "typeSimple": "[Backend.DTOs.Product.ProductDto]"
                   }
                 },
                 {
@@ -1229,8 +1574,8 @@
                     }
                   ],
                   "returnValue": {
-                    "type": "Backend.DTOs.ProductDto",
-                    "typeSimple": "Backend.DTOs.ProductDto"
+                    "type": "Backend.DTOs.Product.ProductDto",
+                    "typeSimple": "Backend.DTOs.Product.ProductDto"
                   }
                 },
                 {
@@ -1246,16 +1591,16 @@
                     },
                     {
                       "name": "input",
-                      "typeAsString": "Backend.DTOs.CreateProductDto, Backend.Application.Contracts",
-                      "type": "Backend.DTOs.CreateProductDto",
-                      "typeSimple": "Backend.DTOs.CreateProductDto",
+                      "typeAsString": "Backend.DTOs.Product.CreateProductDto, Backend.Application.Contracts",
+                      "type": "Backend.DTOs.Product.CreateProductDto",
+                      "typeSimple": "Backend.DTOs.Product.CreateProductDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "Backend.DTOs.ProductDto",
-                    "typeSimple": "Backend.DTOs.ProductDto"
+                    "type": "Backend.DTOs.Product.ProductDto",
+                    "typeSimple": "Backend.DTOs.Product.ProductDto"
                   }
                 },
                 {
@@ -1288,9 +1633,9 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "Backend.DTOs.CreateProductDto, Backend.Application.Contracts",
-                  "type": "Backend.DTOs.CreateProductDto",
-                  "typeSimple": "Backend.DTOs.CreateProductDto",
+                  "typeAsString": "Backend.DTOs.Product.CreateProductDto, Backend.Application.Contracts",
+                  "type": "Backend.DTOs.Product.CreateProductDto",
+                  "typeSimple": "Backend.DTOs.Product.CreateProductDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1300,8 +1645,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Backend.DTOs.CreateProductDto",
-                  "typeSimple": "Backend.DTOs.CreateProductDto",
+                  "type": "Backend.DTOs.Product.CreateProductDto",
+                  "typeSimple": "Backend.DTOs.Product.CreateProductDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1310,8 +1655,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Backend.DTOs.ProductDto",
-                "typeSimple": "Backend.DTOs.ProductDto"
+                "type": "Backend.DTOs.Product.ProductDto",
+                "typeSimple": "Backend.DTOs.Product.ProductDto"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1326,8 +1671,8 @@
               "parametersOnMethod": [],
               "parameters": [],
               "returnValue": {
-                "type": "System.Collections.Generic.List<Backend.DTOs.ProductDto>",
-                "typeSimple": "[Backend.DTOs.ProductDto]"
+                "type": "System.Collections.Generic.List<Backend.DTOs.Product.ProductDto>",
+                "typeSimple": "[Backend.DTOs.Product.ProductDto]"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1364,8 +1709,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Backend.DTOs.ProductDto",
-                "typeSimple": "Backend.DTOs.ProductDto"
+                "type": "Backend.DTOs.Product.ProductDto",
+                "typeSimple": "Backend.DTOs.Product.ProductDto"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -1388,9 +1733,9 @@
                 },
                 {
                   "name": "input",
-                  "typeAsString": "Backend.DTOs.CreateProductDto, Backend.Application.Contracts",
-                  "type": "Backend.DTOs.CreateProductDto",
-                  "typeSimple": "Backend.DTOs.CreateProductDto",
+                  "typeAsString": "Backend.DTOs.Product.CreateProductDto, Backend.Application.Contracts",
+                  "type": "Backend.DTOs.Product.CreateProductDto",
+                  "typeSimple": "Backend.DTOs.Product.CreateProductDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1412,8 +1757,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Backend.DTOs.CreateProductDto",
-                  "typeSimple": "Backend.DTOs.CreateProductDto",
+                  "type": "Backend.DTOs.Product.CreateProductDto",
+                  "typeSimple": "Backend.DTOs.Product.CreateProductDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1422,8 +1767,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Backend.DTOs.ProductDto",
-                "typeSimple": "Backend.DTOs.ProductDto"
+                "type": "Backend.DTOs.Product.ProductDto",
+                "typeSimple": "Backend.DTOs.Product.ProductDto"
               },
               "allowAnonymous": null,
               "authorizeDatas": [],
@@ -4985,7 +5330,7 @@
     }
   },
   "types": {
-    "Backend.DTOs.BillDto": {
+    "Backend.DTOs.Bill.BillDto": {
       "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
@@ -5059,7 +5404,7 @@
         }
       ]
     },
-    "Backend.DTOs.CreateBillDto": {
+    "Backend.DTOs.Bill.CreateBillDto": {
       "baseType": null,
       "isEnum": false,
       "enumNames": null,
@@ -5107,7 +5452,194 @@
         }
       ]
     },
-    "Backend.DTOs.CreateProductDto": {
+    "Backend.DTOs.Order.CreateOrderDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "VendorName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "TotalAmount",
+          "jsonName": null,
+          "type": "System.Decimal",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "BuyProducts",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "OrderDate",
+          "jsonName": null,
+          "type": "System.DateOnly",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "DeliveryDate",
+          "jsonName": null,
+          "type": "System.DateOnly",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "IsReceived",
+          "jsonName": null,
+          "type": "System.Boolean",
+          "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        }
+      ]
+    },
+    "Backend.DTOs.Order.OrderDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Id",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "VendorName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "TotalAmount",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "BuyProducts",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "OrderDate",
+          "jsonName": null,
+          "type": "System.DateOnly",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "DeliveryDate",
+          "jsonName": null,
+          "type": "System.DateOnly",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "IsReceived",
+          "jsonName": null,
+          "type": "System.Boolean",
+          "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        }
+      ]
+    },
+    "Backend.DTOs.Product.CreateProductDto": {
       "baseType": null,
       "isEnum": false,
       "enumNames": null,
@@ -5168,7 +5700,7 @@
         }
       ]
     },
-    "Backend.DTOs.ProductDto": {
+    "Backend.DTOs.Product.ProductDto": {
       "baseType": null,
       "isEnum": false,
       "enumNames": null,
@@ -5189,7 +5721,7 @@
           "isNullable": false
         },
         {
-          "name": "name",
+          "name": "Name",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -5202,7 +5734,7 @@
           "isNullable": false
         },
         {
-          "name": "description",
+          "name": "Description",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -5215,7 +5747,7 @@
           "isNullable": false
         },
         {
-          "name": "price",
+          "name": "Price",
           "jsonName": null,
           "type": "System.Int32",
           "typeSimple": "number",
@@ -5228,7 +5760,7 @@
           "isNullable": false
         },
         {
-          "name": "quantity",
+          "name": "Quantity",
           "jsonName": null,
           "type": "System.Int32",
           "typeSimple": "number",

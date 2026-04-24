@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductServicesService } from '@proxy';
 import { inject } from '@angular/core';
-import { BillDto, ProductDto } from '@proxy/dtos';
+// import { BillDto, ProductDto } from '@proxy/dtos';
+import { BillDto } from '@proxy/dtos/bill';
+import { ProductDto } from '@proxy/dtos/product';
 import { BillService } from '@proxy';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
