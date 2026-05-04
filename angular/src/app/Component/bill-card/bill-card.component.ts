@@ -12,7 +12,7 @@ import {
   ConfirmationService,
   ModalComponent
 } from '@abp/ng.theme.shared';
-// import { BillDto } from '@proxy/dtos';
+
 import { BillDto } from '@proxy/dtos/bill';
 import { BillService } from '@proxy';
 import {
@@ -35,7 +35,7 @@ import { ToasterService } from '@abp/ng.theme.shared';
     ModalComponent,
     ReactiveFormsModule,
     RouterLink
-],
+  ],
   templateUrl: './bill-card.component.html',
   styleUrl: './bill-card.component.scss',
 })
@@ -50,7 +50,7 @@ export class BillCardComponent {
   private readonly fb = inject(FormBuilder);
   private readonly billService = inject(BillService);
   private readonly confirmation = inject(ConfirmationService);
-  private readonly toast=inject(ToasterService)
+  private readonly toast = inject(ToasterService)
 
   constructor() {
     this.form = this.fb.group({
@@ -80,31 +80,57 @@ export class BillCardComponent {
   }
 
   openEditForm(): void {
-  console.log('Bill object:', this.bill);
-  console.log('Bill ID:', this.bill.id);
+    console.log('Bill object:', this.bill);
+    console.log('Bill ID:', this.bill.id);
 
-  this.form.patchValue({
-    customer: this.bill.customer,
-    totalAmount: this.bill.totalAmount,
-    buyProducts: this.bill.buyProducts,
-  });
 
-  this.isOpen = true;
-}
+
+    this.form.patchValue({
+      customer: this.bill.customer,
+      totalAmount: this.bill.totalAmount,
+      buyProducts: this.getProductNames(),
+    });
+
+    this.isOpen = true;
+  }
 
   closeForm(): void {
     this.isOpen = false;
   }
 
- edit(id:string): void {
- 
+  edit(id: string): void {
 
-  if (this.form.invalid) return;
 
-  this.billService.update(id, this.form.value).subscribe(() => {
-    this.isOpen = false;
-    this.toast.success("update successfully")
-    this.updated.emit();
-  });
-}
+    if (this.form.invalid) return;
+
+    this.billService.update(id, this.form.value).subscribe(() => {
+      this.isOpen = false;
+      this.toast.success("update successfully")
+      this.updated.emit();
+    });
+  }
+
+  getProductNames(): string {
+    try {
+      const products: any = JSON.parse(this.bill.buyProducts!);
+
+      if (Array.isArray(products)) {
+        return products.map((p: any) => p.name).join(', ');
+      }
+
+      return '';
+    } catch (e) {
+
+      return this.bill.buyProducts || '';
+    }
+  }
+
+  copyId(id: string): void {
+    navigator.clipboard.writeText(id).then(() => {
+      this.toast.success('Copied to clipboard!');
+    }).catch(() => {
+      this.toast.error('Copy failed');
+    });
+  }
+
 }

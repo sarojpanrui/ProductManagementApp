@@ -51,20 +51,27 @@ export class AppComponent {
         layout: eLayoutType.application,
       },
       {
-        path:'/user',
-        name:'MyCustomers',
+        path: '/user',
+        name: 'MyCustomers',
         iconClass: 'fas fa-user-cog',
         order: 3,
         layout: eLayoutType.application,
       },
       {
-        path:'/order',
-        name:'Orders',
+        path: '/order',
+        name: 'Orders',
         iconClass: 'fas fa-clipboard-list',
-        order:3,
-        layout:eLayoutType.application,
+        order: 3,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/vendor',
+        name: 'MyVendors',
+        iconClass: 'fas fa-truck',
+        order: 3,
+        layout: eLayoutType.application
       }
-      
+
     ]);
   }
 }

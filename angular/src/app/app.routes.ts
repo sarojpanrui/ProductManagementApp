@@ -7,6 +7,7 @@ import { ViewBillComponent } from './Pages/view-bill/view-bill.component';
 import { UserComponent } from './Pages/user/user.component';
 import { OrderComponent } from './Pages/order/order.component';
 import { OrderViewComponent } from './Pages/order-view/order-view.component';
+import { VendorComponent } from './Pages/vendor/vendor.component';
 
 export const appRoutes: Routes = [
  {
@@ -40,6 +41,10 @@ export const appRoutes: Routes = [
   {
     path:'orderview/:id',
     component:OrderViewComponent
+  },
+  {
+    path:'vendor',
+    component:VendorComponent
   }
   
 ];

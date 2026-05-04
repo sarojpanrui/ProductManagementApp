@@ -1,0 +1,23 @@
+.customer-card {
+  background: #ffffff;
+  border-radius: 10px; // slightly rounded (card feel, not pill)
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px; // square with soft corners
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

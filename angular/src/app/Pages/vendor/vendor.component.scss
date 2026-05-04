@@ -1,0 +1,35 @@
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  backdrop-filter: blur(10px);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0d6efd; /* Bootstrap primary color */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.user-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.user-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}

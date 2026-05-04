@@ -9,4 +9,54 @@
   transform: translateY(-6px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
+.icon-box {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  font-size: 11px;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.description {
+  font-size: 13px;
+  color: #495057;
+  background: #f8f9fa;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #198754;
+}
+
+.qty-badge {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
 

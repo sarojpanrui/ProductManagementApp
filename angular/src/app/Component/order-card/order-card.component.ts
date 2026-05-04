@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
 
     ModalComponent,
     ModalCloseDirective,
-    ReactiveFormsModule,RouterLink
+    ReactiveFormsModule, RouterLink
   ],
   templateUrl: './order-card.component.html',
   styleUrl: './order-card.component.scss',
@@ -60,7 +60,7 @@ export class OrderCardComponent {
     this.form.patchValue({
       vendorName: this.order.vendorName,
       totalAmount: this.order.totalAmount,
-      buyProducts: this.order.buyProducts,
+      buyProducts: this.getProductNames(),
       orderDate: this.order.orderDate,
       deliveryDate: this.order.deliveryDate,
       isReceived: this.order.isReceived
@@ -103,7 +103,7 @@ export class OrderCardComponent {
       hideYesBtn: false,
       dismissible: false,
       cancelText: 'Cancel',
-      yesText: 'Delete',
+      yesText: 'Delete',  
       icon: 'fa fa-trash text-danger',
     };
 
@@ -118,7 +118,30 @@ export class OrderCardComponent {
         }
       });
 
+  }
 
+  getProductNames(): string {
+    try {
+      const products: any = JSON.parse(this.order.buyProducts!);
 
+      if (Array.isArray(products)) {
+        return products.map((p: any) => p.name).join(', ');
+      }
+
+      return '';     
+    } catch (e) {
+
+      return this.order.buyProducts || '';
+    }
+  }
+
+  copyId(id: string): void {
+    navigator.clipboard.writeText(id).then(() => {
+      this.toast.success('Copied to clipboard!');
+    }).catch(() => {
+      this.toast.error('Copy failed');
+    });
   }
 }
+
+

@@ -7,6 +7,8 @@ import { ProductDto } from '@proxy/dtos/product';
 import { BillService } from '@proxy';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
+import { OrderDto } from '@proxy/dtos/order';
+import { OrderService } from '@proxy/services/order-services';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,9 +20,11 @@ import { RouterLink, RouterModule } from '@angular/router';
 export class DashboardComponent {
   productService = inject(ProductServicesService);
   billService = inject(BillService);
+  orderService = inject(OrderService)
 
   products: ProductDto[] = [];
   bills: BillDto[] = [];
+  order:OrderDto[]=[];
 
   recentBills: BillDto[] = [];
   recentProducts: ProductDto[] = [];
@@ -29,17 +33,19 @@ export class DashboardComponent {
   bill_count: number = 0;
   total_bill_amount: number = 0;
   customer_count: number = 0;
+  vendor_count:number=0;
 
   ngOnInit() {
     this.fetchProducts();
     this.fetchBills();
-    this.fetchCustomer()
+    this.fetchCustomer();
+    this.fetchOrder()
   }
 
   fetchProducts() {
     this.productService.getProducts().subscribe(res => {
       this.products = res;
-      console.log(this.products)
+      // console.log(this.products)
       this.product_count = res.length;
 
       this.recentProducts = [...res]
@@ -47,6 +53,8 @@ export class DashboardComponent {
           new Date(b.createTime ?? '').getTime() - new Date(a.createTime ?? '').getTime()
         )
         .slice(0, 5);
+        console.log(this.recentProducts);
+
     });
   }
 
@@ -100,14 +108,15 @@ export class DashboardComponent {
         (sum, bill) => sum + (bill.totalAmount ?? 0),
         0
       );
-
-      this.recentBills = [...filtered]
+      
+      this.recentBills = [...res]
         .sort((a, b) =>
           new Date(b.createTime ?? '').getTime() -
           new Date(a.createTime ?? '').getTime()
         )
         .slice(0, 5);
       this.extractTop5CustomerExpenditure(filtered);
+      console.log(this.recentBills)
     });
   }
 
@@ -136,16 +145,32 @@ export class DashboardComponent {
 
       const bills = res;
 
-      // Extract unique customer names
+      
       const uniqueCustomers = new Set(
         bills.map(b => b.customer)
       );
 
       this.customer_count = uniqueCustomers.size;
-      console.log(this.customer_count)
+      // console.log(this.customer_count)
 
     });
   }
 
+  fetchOrder(){
+    this.orderService.getList().subscribe(res => {
+      const order=res;
+
+      const uniqueVendor=new Set(
+        order.map(b=>b.vendorName)
+      )
+
+      this.vendor_count=uniqueVendor.size
+      console.log(this.vendor_count)
+    })
+  }
+
 
 }
+
+
+

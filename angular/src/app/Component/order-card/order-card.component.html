@@ -10,6 +10,14 @@
 
       <small class="text-muted">
         ID: {{ order?.id }}
+
+        <button class="btn btn-sm btn-light ms-1" (click)="copyId(order.id)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+          </svg>
+        </button>
       </small>
     </div>
 
@@ -46,7 +54,7 @@
 
   </div>
 
-  <!-- ✅ Products Section -->
+  <!--  Products Section -->
   <div class="mt-3">
 
     <p class="mb-1 fw-semibold small text-muted">Products</p>
@@ -103,9 +111,15 @@
         Update
       </button>
 
-      <button class="btn btn-outline-primary btn-sm"  [routerLink]="['/orderview', order.id]">
+
+
+      @if (order?.isReceived){
+      <button class="btn btn-outline-primary btn-sm" [routerLink]="['/orderview', order.id]">
         view
       </button>
+      }
+
+
 
     </div>
 
@@ -185,3 +199,4 @@
   </ng-template>
 
 </abp-modal>
+

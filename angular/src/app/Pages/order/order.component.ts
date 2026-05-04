@@ -66,12 +66,6 @@ export class OrderComponent {
     });
   }
 
-  // fetchProducts() {
-  //   this.productService.getList().subscribe(res => {
-  //     this.products = res;
-  //   });
-  // }
-
   fetchProducts(){
     this.productService.getProducts().subscribe(res=>{
       this.products=res;
@@ -110,8 +104,7 @@ export class OrderComponent {
     const search = this.searchText?.toLowerCase() || '';
 
     return this.orders.filter(ord =>
-      ord.vendorName?.toLowerCase().includes(search) ||
-      ord.buyProducts?.toLowerCase().includes(search)
+      ord.vendorName?.toLowerCase().includes(search) 
     );
   }
 
@@ -155,3 +148,5 @@ export class OrderComponent {
     });
   }
 }
+
+

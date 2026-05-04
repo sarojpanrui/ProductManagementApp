@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { BillService } from '@proxy';
 import { BillDto } from '@proxy/dtos/bill';
 import { FormsModule } from '@angular/forms';
+import { UserCardComponent } from 'src/app/Component/user-card/user-card.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,UserCardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })

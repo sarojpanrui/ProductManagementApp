@@ -38,7 +38,7 @@ export class ProductCardComponent implements OnInit {
 
   readonly productServices = inject(ProductServicesService);
   private readonly fb = inject(FormBuilder);
-  private readonly toast=inject(ToasterService)
+  private readonly toast = inject(ToasterService)
 
   isOpen = false;
   form!: FormGroup;
@@ -95,5 +95,13 @@ export class ProductCardComponent implements OnInit {
 
   closeView() {
     this.viewOpen = false;
+  }
+
+  copyId(id: string): void {
+    navigator.clipboard.writeText(id).then(() => {
+      this.toast.success('Copied to clipboard!');
+    }).catch(() => {
+      this.toast.error('Copy failed');
+    });
   }
 }
