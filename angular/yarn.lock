@@ -451,10 +451,10 @@
   optionalDependencies:
     lmdb "3.4.3"
 
-"@angular/cdk@^21.0.0", "@angular/cdk@21.1.6":
-  version "21.1.6"
-  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-21.1.6.tgz"
-  integrity sha512-a6isY8eWxfRO99KPs8GLMQRDE06diNbPmD9tcYi+EWxjPFOZ88QJmMN8a0yja+LDQaG2kRbNBLjYUEro3qCpTQ==
+"@angular/cdk@^21.0.0", "@angular/cdk@^21.2.9", "@angular/cdk@21.1.6":
+  version "21.2.9"
+  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-21.2.9.tgz"
+  integrity sha512-0JXsr8f7xjV2815esTSq4+zGqWMa0CyNT/DV1F7lYS6qkYXcFdYUzGcd/WjNL05VKkajkSkWmTi6uyVsOpYdGA==
   dependencies:
     parse5 "^8.0.0"
     tslib "^2.3.0"

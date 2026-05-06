@@ -1,6 +1,7 @@
 import { RestService, Rest } from '@abp/ng.core';
+import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable, inject } from '@angular/core';
-import type { CreateProductDto, ProductDto } from '../../dtos/product/models';
+import type { CreateProductDto, GetProductListDto, ProductDto } from '../../dtos/product/models';
 
 @Injectable({
   providedIn: 'root',
@@ -35,10 +36,11 @@ export class ProductServicesService {
     { apiName: this.apiName,...config });
   
 
-  getProducts = (config?: Partial<Rest.Config>) =>
-    this.restService.request<any, ProductDto[]>({
+  getProducts = (input: GetProductListDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<ProductDto>>({
       method: 'GET',
       url: '/api/app/product-services/products',
+      params: { skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
   

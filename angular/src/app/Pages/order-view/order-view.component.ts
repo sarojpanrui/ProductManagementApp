@@ -27,10 +27,8 @@ export class OrderViewComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
-
     this.orderService.get(id).subscribe(res => {
       this.order = res;
-
       if (this.order?.buyProducts) {
         try {
           this.parsedProducts = JSON.parse(this.order.buyProducts);

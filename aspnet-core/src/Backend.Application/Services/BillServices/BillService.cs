@@ -1,9 +1,11 @@
 ﻿using Backend.DTOs.Bill;
+using Backend.DTOs.Product;
 using Backend.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
@@ -24,14 +26,35 @@ namespace Backend.Services.BillServices
             return ObjectMapper.Map<Bill, BillDto>(bill);
         }
 
-        public async Task<List<BillDto>> GetListAsync()
+        //public async Task<List<BillDto>> GetListAsync()
+        //{
+        //    var bills = await _billRepository.GetListAsync();
+
+        //    return bills
+        //    .Select(b => ObjectMapper.Map<Bill, BillDto>(b))
+        //    .ToList();
+
+        //}
+
+        public async Task<PagedResultDto<BillDto>> GetListAsync(GetBillsListDto input)
         {
-            var bills = await _billRepository.GetListAsync();
+            var queryable = await _billRepository.GetQueryableAsync();
 
-            return bills
-            .Select(b => ObjectMapper.Map<Bill, BillDto>(b))
-            .ToList();
+            queryable = queryable
+                .OrderByDescending(x => x.CreationTime); 
 
+            var totalCount = await AsyncExecuter.CountAsync(queryable);
+
+            var items = await AsyncExecuter.ToListAsync(
+                queryable
+                    .Skip(input.SkipCount)
+                    .Take(input.MaxResultCount)
+            );
+
+            return new PagedResultDto<BillDto>(
+                totalCount,
+                ObjectMapper.Map<List<Bill>, List<BillDto>>(items)
+            );
         }
 
         public async Task<BillDto> CreateAsync(CreateBillDto input)

@@ -1,9 +1,11 @@
 ﻿using Backend.DTOs.Product;
 using Backend.Entity;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
@@ -27,16 +29,34 @@ namespace Backend.Services.ProductServices
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
-        public async Task<List<ProductDto>> GetProductsAsync()
+        public async Task<PagedResultDto<ProductDto>> GetProductsAsync(GetProductListDto input)
         {
-            var products = await _productRepository.GetListAsync();
+            var queryable = await _productRepository.GetQueryableAsync();
 
-            return products
-                .Select(p => ObjectMapper.Map<Product, ProductDto>(p))
-                .ToList();
+            var totalCount = await AsyncExecuter.CountAsync(queryable);
 
-            
+            var items = await AsyncExecuter.ToListAsync(
+                queryable
+                    .Skip(input.SkipCount)
+                    .Take(input.MaxResultCount)
+            );
+
+            return new PagedResultDto<ProductDto>(
+                totalCount,
+                ObjectMapper.Map<List<Product>, List<ProductDto>>(items)
+            );
         }
+
+        //public async Task<List<ProductDto>> GetProductsAsync()
+        //{
+        //    var products = await _productRepository.GetListAsync();
+
+        //    return products
+        //        .Select(p => ObjectMapper.Map<Product, ProductDto>(p))
+        //        .ToList();
+        //}
+
+
 
         public async Task<ProductDto> GetProductByIdAsync(Guid id)
         {
@@ -60,5 +80,9 @@ namespace Backend.Services.ProductServices
         {
             await _productRepository.DeleteAsync(id);
         }
+
+       
+
+
     }
 }

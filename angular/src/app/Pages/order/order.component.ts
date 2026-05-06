@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrderService, ProductServicesService } from '@proxy';
+import { OrderService } from '@proxy/services/order-services';
+import { ProductServicesService } from '@proxy/services/product-services';
 import { OrderDto } from '@proxy/dtos/order';
 import { ProductDto } from '@proxy/dtos/product';
 import { OrderCardComponent } from 'src/app/Component/order-card/order-card.component';
@@ -30,6 +31,7 @@ export class OrderComponent {
   toast = inject(ToasterService);
 
   form!: FormGroup;
+  isLoading:boolean=false;
 
   orders: OrderDto[] = [];
   products: ProductDto[] = [];
@@ -40,6 +42,10 @@ export class OrderComponent {
 
   searchText: string = '';
   productSearch: string = '';
+
+  pageIndex = 1;
+  pageSize = 3;
+  totalOrders = 0;
 
   ngOnInit() {
     this.buildForm();
@@ -61,14 +67,37 @@ export class OrderComponent {
 
   // ================= FETCH =================
   fetchOrder() {
-    this.orderService.getList().subscribe(res => {
-      this.orders = res;
+    this.isLoading=true;
+    this.orderService.getList({
+      skipCount: (this.pageIndex - 1) * this.pageSize,
+      maxResultCount: this.pageSize
+    }).subscribe(res => {
+      this.orders = res.items ?? [];
+      this.totalOrders = res.totalCount ?? 0;
+      this.isLoading=false
     });
   }
 
-  fetchProducts(){
-    this.productService.getProducts().subscribe(res=>{
-      this.products=res;
+  nextPage() {
+    if (this.pageIndex * this.pageSize < this.totalOrders) {
+      this.pageIndex++;
+      this.fetchOrder()
+    }
+  }
+
+  prevPage() {
+    if (this.pageIndex > 1) {
+      this.pageIndex--;
+      this.fetchOrder();
+    }
+  }
+
+  fetchProducts() {
+    this.productService.getProducts({
+      skipCount: 0,
+      maxResultCount: 100
+    }).subscribe(res => {
+      this.products = res.items ?? [];
     })
   }
 
@@ -102,16 +131,14 @@ export class OrderComponent {
   // ================= ORDER SEARCH =================
   get filterOrder() {
     const search = this.searchText?.toLowerCase() || '';
-
     return this.orders.filter(ord =>
-      ord.vendorName?.toLowerCase().includes(search) 
+      ord.vendorName?.toLowerCase().includes(search)
     );
   }
 
   // ================= PRODUCT SEARCH =================
   get filteredProductList() {
     const search = this.productSearch?.toLowerCase() || '';
-
     return this.products
       .filter(p => p.name?.toLowerCase().includes(search))
       .filter(p => !this.selectedProducts.some(sp => sp.id === p.id));

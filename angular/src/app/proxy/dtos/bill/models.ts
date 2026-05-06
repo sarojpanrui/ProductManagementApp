@@ -1,4 +1,4 @@
-import type { EntityDto } from '@abp/ng.core';
+import type { EntityDto, PagedResultRequestDto } from '@abp/ng.core';
 
 export interface BillDto extends EntityDto<string> {
   id?: string;
@@ -12,4 +12,7 @@ export interface CreateBillDto {
   customer?: string;
   totalAmount?: number;
   buyProducts?: string;
+}
+
+export interface GetBillsListDto extends PagedResultRequestDto {
 }

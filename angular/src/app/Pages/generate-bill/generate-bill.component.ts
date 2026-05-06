@@ -12,10 +12,11 @@ import {
 } from '@abp/ng.theme.shared';
 import { BillDto } from '@proxy/dtos/bill';
 import { ProductDto } from '@proxy/dtos/product';
-import { ProductServicesService } from '@proxy';
+import { ProductServicesService } from '@proxy/services/product-services';
 import { ModalComponent } from '@abp/ng.theme.shared';
 import { FormsModule } from '@angular/forms';
 import { ToasterService } from '@abp/ng.theme.shared';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-generate-bill',
@@ -23,7 +24,7 @@ import { ToasterService } from '@abp/ng.theme.shared';
   imports: [
     ReactiveFormsModule,
     CardBodyComponent,
-    CardComponent, ModalComponent, FormsModule
+    CardComponent, ModalComponent, FormsModule, CommonModule
   ],
   templateUrl: './generate-bill.component.html',
   styleUrl: './generate-bill.component.scss',
@@ -32,13 +33,17 @@ export class GenerateBillComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly billService = inject(BillService);
   private readonly productService = inject(ProductServicesService)
-  private readonly toast=inject(ToasterService)
+  private readonly toast = inject(ToasterService)
 
   bills: BillDto[] = [];
   form!: FormGroup;
   products: ProductDto[] = [];
 
   isOpen: boolean = false
+  isLoading:boolean=false;
+
+  pageIndex=1;
+  pageSize=5;
 
   ngOnInit(): void {
     this.buildForm();
@@ -53,10 +58,16 @@ export class GenerateBillComponent implements OnInit {
   }
 
   fetchProducts(): void {
-    this.productService.getProducts().subscribe((res) => {
-      this.products = res;
+    this.isLoading=true
+    this.productService.getProducts({
+      skipCount: 0,
+      maxResultCount: 100
+    }).subscribe((res) => {
+      this.products = res.items ?? [];
+      this.isLoading=false
     })
   }
+
 
   buildForm(): void {
     this.form = this.fb.group({
@@ -69,11 +80,9 @@ export class GenerateBillComponent implements OnInit {
 
   create(): void {
     if (this.form.invalid) return;
-
     this.billService.create(this.form.value).subscribe(() => {
       this.toast.success('Bill added...');
-      this.fetchBills(); // refresh list after create
-
+      this.fetchBills();
       this.form.reset({
         customer: '',
         totalAmount: 0,
@@ -86,19 +95,15 @@ export class GenerateBillComponent implements OnInit {
   productSearch: string = '';
 
   addProduct(product: any) {
-
     this.selectedProducts.push(product);
     this.updateForm();
-
   }
 
   removeProduct(product: ProductDto) {
     const index = this.selectedProducts.findIndex(p => p.id === product.id);
-
     if (index !== -1) {
-      this.selectedProducts.splice(index, 1); 
+      this.selectedProducts.splice(index, 1);
     }
-
     this.updateForm();
   }
 
@@ -108,10 +113,7 @@ export class GenerateBillComponent implements OnInit {
       name: p.name,
       price: p.price
     }));
-
-
     const total = this.selectedProducts.reduce((sum, p) => sum + (p.price || 0), 0);
-
     this.form.patchValue({
       buyProducts: JSON.stringify(data),
       totalAmount: total
@@ -120,11 +122,9 @@ export class GenerateBillComponent implements OnInit {
 
   get filteredProductList() {
     const search = this.form.get('productSearch')?.value?.toLowerCase() || '';
-
     return this.products.filter(p =>
       p.name?.toLowerCase().includes(search)
     );
-
   }
 
 

@@ -46,7 +46,13 @@
   </nav>
 
   <!-- Product Grid -->
-  <div class="row g-3">
+
+  <div *ngIf="isLoading" class="text-center my-3">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+
+  <div class="row g-3" *ngIf="!isLoading">
     @for (p of filteredProducts; track p.id) {
     <div class="col-lg-3 col-md-4 col-sm-6">
       <app-product-card [product]="p" (deleted)="delete($event)" (updated)="fetchProduct()">
@@ -64,6 +70,39 @@
 
 </div>
 
+<!-- pagination part -->
+<div class="d-flex justify-content-center align-items-center mt-4 gap-3">
+  <button class="btn btn-outline-primary rounded-pill" (click)="prevPage()" [disabled]="pageIndex === 1">
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-arrow-left-icon lucide-arrow-left">
+        <path d="m12 19-7-7 7-7" />
+        <path d="M19 12H5" />
+      </svg>
+      Previous
+    </span>
+  </button>
+
+  <span class="fw-semibold">
+    Page {{ pageIndex }}
+  </span>
+
+  <button class="btn btn-outline-primary rounded-pill" (click)="nextPage()"
+    [disabled]="pageIndex * pageSize >= totalProducts">
+    <span>
+      Next
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-arrow-right-icon lucide-arrow-right">
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+<!-- add product modal -->
 <abp-modal [(visible)]="isOpen">
   <ng-template #abpHeader>
     <h3>Create New Product</h3>
@@ -102,5 +141,3 @@
     </button>
   </ng-template>
 </abp-modal>
-
-

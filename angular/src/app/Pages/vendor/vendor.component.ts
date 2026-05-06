@@ -4,28 +4,54 @@ import { OrderDto } from '@proxy/dtos/order';
 import { FormsModule } from '@angular/forms';
 // import { UserCardComponent } from 'src/app/Component/user-card/user-card.component';
 import { VendorCardComponent } from 'src/app/Component/vendor-card/vendor-card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-vendor',
-  imports: [FormsModule,VendorCardComponent],
+  imports: [FormsModule, VendorCardComponent,CommonModule],
   templateUrl: './vendor.component.html',
   styleUrl: './vendor.component.scss',
 })
 export class VendorComponent {
   order: OrderDto[] = [];
 
+  pageSize = 12;
+  pageIndex = 1;
+  totalOrders = 0;
+
+  isLoading:boolean = false;
+
   orderService = inject(OrderService);
 
   ngOnInit() {
     this.fetchOrder()
-
   }
 
   fetchOrder() {
-    this.orderService.getList().subscribe((res) => {
-      this.order = res;
-      this.extractVendorSummary(res)
+    this.isLoading=true;
+    this.orderService.getList({
+      skipCount: (this.pageIndex - 1) * this.pageSize,
+      maxResultCount: this.pageSize
+    }).subscribe((res) => {
+      this.order = res.items ?? [];
+      this.totalOrders = res.totalCount ?? 0;
+      this.extractVendorSummary(res.items ?? [])
+      this.isLoading=false;
     })
+  }
+
+  nextPage() {
+    if (this.pageIndex * this.pageSize < this.totalOrders) {
+      this.pageIndex++;
+      this.fetchOrder();
+    }
+  }
+
+  prevPage() {
+    if (this.pageIndex > 1) {
+      this.pageIndex--;
+      this.fetchOrder();
+    }
   }
 
   searchText: string = '';

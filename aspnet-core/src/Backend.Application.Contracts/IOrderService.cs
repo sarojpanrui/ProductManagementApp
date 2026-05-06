@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 
 namespace Backend
 {
@@ -9,8 +10,8 @@ namespace Backend
     {
         Task<OrderDto> GetAsync(Guid id);
 
-        Task<List<OrderDto>> GetListAsync();
-
+        //Task<List<OrderDto>> GetListAsync();
+        Task<PagedResultDto<OrderDto>> GetListAsync(GetOrderListDto input);
         Task<OrderDto> CreateAsync(CreateOrderDto bill);
         Task<OrderDto> UpdateAsync(Guid id, CreateOrderDto bill);
 

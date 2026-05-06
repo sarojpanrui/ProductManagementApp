@@ -1,6 +1,7 @@
 import { RestService, Rest } from '@abp/ng.core';
+import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable, inject } from '@angular/core';
-import type { BillDto, CreateBillDto } from '../../dtos/bill/models';
+import type { BillDto, CreateBillDto, GetBillsListDto } from '../../dtos/bill/models';
 
 @Injectable({
   providedIn: 'root',
@@ -35,10 +36,11 @@ export class BillService {
     { apiName: this.apiName,...config });
   
 
-  getList = (config?: Partial<Rest.Config>) =>
-    this.restService.request<any, BillDto[]>({
+  getList = (input: GetBillsListDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<BillDto>>({
       method: 'GET',
       url: '/api/app/bill',
+      params: { skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
   

@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+
+
 
 namespace Backend
 {
@@ -10,7 +13,8 @@ namespace Backend
     {
         Task<ProductDto> CreateProductAsync(CreateProductDto input);
 
-        Task<List<ProductDto>> GetProductsAsync();
+        //Task<List<ProductDto>> GetProductsAsync();
+        Task<PagedResultDto<ProductDto>> GetProductsAsync(GetProductListDto input);
 
         Task<ProductDto> GetProductByIdAsync(Guid id);
 

@@ -1,3 +1,4 @@
+import type { PagedResultRequestDto } from '@abp/ng.core';
 
 export interface CreateOrderDto {
   vendorName?: string;
@@ -6,6 +7,9 @@ export interface CreateOrderDto {
   orderDate?: string;
   deliveryDate?: string;
   isReceived?: boolean;
+}
+
+export interface GetOrderListDto extends PagedResultRequestDto {
 }
 
 export interface OrderDto {

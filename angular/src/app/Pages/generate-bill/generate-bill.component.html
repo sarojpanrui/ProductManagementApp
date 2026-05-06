@@ -39,8 +39,12 @@
           <input type="text" class="form-control mt-2" placeholder="Search product..."
             formControlName="productSearch" />
 
+          <div *ngIf="isLoading" class="text-center my-3">
+            <div class="spinner-border text-primary"></div>
+          </div>
+
           <!-- Dropdown List -->
-          <div class="border rounded mt-2 p-2" style="max-height: 200px; overflow-y: auto;">
+          <div class="border rounded mt-2 p-2" style="max-height: 200px; overflow-y: auto;" *ngIf="!isLoading">
 
             @for (p of filteredProductList; track p.id) {
             <div class="dropdown-item" style="cursor:pointer" (click)="addProduct(p)">
@@ -72,4 +76,3 @@
     </abp-card-body>
   </abp-card>
 </div>
-

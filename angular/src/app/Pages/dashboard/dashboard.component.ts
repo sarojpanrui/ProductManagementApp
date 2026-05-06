@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
-import { ProductServicesService } from '@proxy';
+import { ProductServicesService } from '@proxy/services/product-services';
 import { inject } from '@angular/core';
-// import { BillDto, ProductDto } from '@proxy/dtos';
 import { BillDto } from '@proxy/dtos/bill';
 import { ProductDto } from '@proxy/dtos/product';
-import { BillService } from '@proxy';
+import { BillService } from '@proxy/services/bill-services/bill.service';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { OrderDto } from '@proxy/dtos/order';
 import { OrderService } from '@proxy/services/order-services';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule,RouterModule],
+  imports: [FormsModule, RouterModule, DragDropModule, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 
@@ -24,7 +26,7 @@ export class DashboardComponent {
 
   products: ProductDto[] = [];
   bills: BillDto[] = [];
-  order:OrderDto[]=[];
+  order: OrderDto[] = [];
 
   recentBills: BillDto[] = [];
   recentProducts: ProductDto[] = [];
@@ -33,7 +35,9 @@ export class DashboardComponent {
   bill_count: number = 0;
   total_bill_amount: number = 0;
   customer_count: number = 0;
-  vendor_count:number=0;
+  vendor_count: number = 0;
+
+  isLoading : boolean=false;
 
   ngOnInit() {
     this.fetchProducts();
@@ -43,18 +47,17 @@ export class DashboardComponent {
   }
 
   fetchProducts() {
-    this.productService.getProducts().subscribe(res => {
-      this.products = res;
-      // console.log(this.products)
-      this.product_count = res.length;
-
-      this.recentProducts = [...res]
-        .sort((a, b) =>
-          new Date(b.createTime ?? '').getTime() - new Date(a.createTime ?? '').getTime()
-        )
-        .slice(0, 5);
-        console.log(this.recentProducts);
-
+    this.isLoading=true;
+    const input = {
+      skipCount: 0,
+      maxResultCount: 100
+    };
+    this.productService.getProducts(input).subscribe(res => {
+      this.products = res.items ?? [];
+      this.product_count = res.totalCount ?? 0;
+      console.log(res.items)
+      this.recentProducts = this.products.slice(-5).reverse();
+      this.isLoading=false;
     });
   }
 
@@ -67,8 +70,6 @@ export class DashboardComponent {
       if (!bill.createTime) return false;
 
       const billDate = new Date(bill.createTime);
-
-
       if (this.dateFilter === 'today') {
         return (
           billDate.getDate() === now.getDate() &&
@@ -84,8 +85,6 @@ export class DashboardComponent {
           billDate.getFullYear() === now.getFullYear()
         );
       }
-
-
       if (this.dateFilter === 'year') {
         return billDate.getFullYear() === now.getFullYear();
       }
@@ -96,9 +95,13 @@ export class DashboardComponent {
 
 
   fetchBills() {
-    this.billService.getList().subscribe(res => {
+    this.isLoading=true;
+    this.billService.getList({
+      skipCount: 0,
+      maxResultCount: 100,
+    }).subscribe(res => {
 
-      const filtered = this.filterBillsByDate(res);
+      const filtered = this.filterBillsByDate(res.items ?? []);
 
       this.bills = filtered;
 
@@ -108,15 +111,16 @@ export class DashboardComponent {
         (sum, bill) => sum + (bill.totalAmount ?? 0),
         0
       );
-      
-      this.recentBills = [...res]
+
+      this.recentBills = [...res.items ?? []]
         .sort((a, b) =>
           new Date(b.createTime ?? '').getTime() -
           new Date(a.createTime ?? '').getTime()
         )
         .slice(0, 5);
       this.extractTop5CustomerExpenditure(filtered);
-      console.log(this.recentBills)
+      // console.log(this.recentBills)
+      this.isLoading=false;
     });
   }
 
@@ -141,34 +145,57 @@ export class DashboardComponent {
   }
 
   fetchCustomer() {
-    this.billService.getList().subscribe(res => {
-
-      const bills = res;
-
-      
+    this.isLoading=true;
+    this.billService.getList({
+      skipCount: 0, maxResultCount: 100
+    }).subscribe(res => {
+      const bills = res.items ?? [];
       const uniqueCustomers = new Set(
         bills.map(b => b.customer)
       );
-
       this.customer_count = uniqueCustomers.size;
       // console.log(this.customer_count)
+      this.isLoading=false;
 
     });
   }
 
-  fetchOrder(){
-    this.orderService.getList().subscribe(res => {
-      const order=res;
+  fetchOrder() {
+    this.isLoading=true
+    this.orderService.getList({
+      skipCount: 0, maxResultCount: 100
+    }).subscribe(res => {
+      const order = res.items ?? [];
 
-      const uniqueVendor=new Set(
-        order.map(b=>b.vendorName)
+      const uniqueVendor = new Set(
+        order.map(b => b.vendorName)
       )
-
-      this.vendor_count=uniqueVendor.size
+      this.vendor_count = uniqueVendor.size
       console.log(this.vendor_count)
+      this.isLoading=false
     })
   }
 
+  
+  cards = [
+    { id: 'product', route: '/product' },
+    { id: 'bill', route: '/bill' },
+    { id: 'vendor', route:'/vendor' },
+    { id: 'customer', route: '/user' }
+  ];
+  listCards = [
+    { id: 'products' },
+    { id: 'bills' },
+    { id: 'customers' }
+  ];
+
+  drop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
+  }
+
+  dropList(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.listCards, event.previousIndex, event.currentIndex);
+  }
 
 }
 

@@ -5,7 +5,7 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
-import { BillService } from '@proxy';
+import { BillService } from '@proxy/services/bill-services';
 import {
   CardComponent,
   CardBodyComponent
@@ -17,6 +17,7 @@ import { ModalComponent } from '@abp/ng.theme.shared';
 import { FormsModule } from '@angular/forms';
 import { ProductServicesService } from '@proxy';
 import { ToasterService } from '@abp/ng.theme.shared';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { ToasterService } from '@abp/ng.theme.shared';
     ReactiveFormsModule,
     CardComponent,
     CardBodyComponent,
-    BillCardComponent, RouterLink, ModalComponent, FormsModule
+    BillCardComponent, RouterLink, ModalComponent, FormsModule,CommonModule
   ],
   templateUrl: './bill.component.html',
   styleUrl: './bill.component.scss',
@@ -38,21 +39,43 @@ export class BillComponent implements OnInit {
   private readonly toast=inject(ToasterService)
 
   bills: BillDto[] = [];
-
-
-
   form!: FormGroup;
   searchText = ''
+
+  pageIndex=1;
+  pageSize=8;
+  totalBills=0;
+
+  isLoading:boolean=false;
 
   ngOnInit(): void {
     this.buildForm();
     this.fetchBills();
   }
 
-  fetchBills(): void {
-    this.billService.getList().subscribe((res) => {
-      this.bills = res;
+  fetchBills(): void { 
+    this.isLoading=true
+    this.billService.getList({
+      skipCount: (this.pageIndex - 1) * this.pageSize,
+      maxResultCount: this.pageSize
+    }).subscribe((res) => {
+      this.bills = res.items?? [];
+      this.totalBills=res.totalCount?? 0;
+      this.isLoading=false;
     })
+  }
+
+  nextPage(){
+    if(this.pageIndex * this.pageSize < this.totalBills){
+      this.pageIndex++;
+      this.fetchBills()
+    }
+  }
+  prevPage(){
+    if(this.pageIndex>1){
+      this.pageIndex--;
+      this.fetchBills();
+    }
   }
 
   buildForm() {
@@ -79,7 +102,6 @@ export class BillComponent implements OnInit {
 
   get filteredBills() {
     if (!this.searchText) return this.bills;
-
     return this.bills.filter(p =>
       (p.customer || '')
         .toLowerCase()

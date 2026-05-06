@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
@@ -41,10 +42,27 @@ namespace Backend.Services.OrderServices
 
         }
 
-        public async Task<List<OrderDto>> GetListAsync()
+        //public async Task<List<OrderDto>> GetListAsync()
+        //{
+        //    var orders = await _orderService.GetListAsync();
+        //    return orders.Select(p => ObjectMapper.Map<Order, OrderDto>(p)).ToList();          
+        //}
+
+        public async Task<PagedResultDto<OrderDto>> GetListAsync(GetOrderListDto input)
         {
             var orders = await _orderService.GetListAsync();
-            return orders.Select(p => ObjectMapper.Map<Order, OrderDto>(p)).ToList();          
+
+            var totalCount = orders.Count;
+
+            var items = orders
+                .Skip(input.SkipCount)
+                .Take(input.MaxResultCount)
+                .ToList();
+
+            return new PagedResultDto<OrderDto>(
+                totalCount,
+                ObjectMapper.Map<List<Order>, List<OrderDto>>(items)
+            );
         }
 
         public async Task<string> Received(Guid id)
