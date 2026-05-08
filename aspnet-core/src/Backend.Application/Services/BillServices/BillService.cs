@@ -1,6 +1,7 @@
 ﻿using Backend.DTOs.Bill;
 using Backend.DTOs.Product;
 using Backend.Entity;
+using Backend.Interfaces.Bills;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,12 +4,42 @@
       <h3 class="mb-4 text-primary fw-bold">Generate Bill</h3>
 
       <form [formGroup]="form" (ngSubmit)="create()">
+
         <div class="mb-3">
-          <label class="form-label">
-            Customer Name <span class="text-danger">*</span>
+          <label class="form-label fw-semibold">
+            Customer Name
+            <span class="text-danger">*</span>
           </label>
-          <input type="text" class="form-control" formControlName="customer" placeholder="Enter customer name"
-            autofocus />
+
+          <!-- Search -->
+          <input type="text" class="form-control mb-2" placeholder="Search customer..." [(ngModel)]="customerSearch" [ngModelOptions]="{standalone: true}"/>
+
+          <!-- Selected Customer -->
+          @if (selectedCustomer) {
+          <div class="selected-customer mb-2">
+            <div>
+              <div class="fw-bold">
+                {{ selectedCustomer.name }} - {{ selectedCustomer.id }} 
+              </div>
+             
+            </div>
+            <button type="button" class="btn btn-sm btn-danger" (click)="removeCustomer()">
+              Remove
+            </button>
+          </div>
+
+          }
+
+          <!-- Customer List -->
+          <div class="customer-list">
+            @for (customer of filteredCustomers; track customer.id) {
+            <div class="customer-item" (click)="selectCustomer(customer)">
+              <div class="fw-semibold">
+                {{ customer.name }} - {{ customer.id }} - {{customer.totalAmount}}
+              </div> 
+            </div>
+            }
+          </div>
         </div>
 
         <div class="mb-3">

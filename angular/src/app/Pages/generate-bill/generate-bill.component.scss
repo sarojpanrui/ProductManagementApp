@@ -1,0 +1,31 @@
+.customer-list {
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 12px;
+}
+
+.customer-item {
+  padding: 12px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background: #fff;
+}
+
+.customer-item:hover {
+  background: #f5f9ff;
+  border-color: #0d6efd;
+}
+
+.selected-customer {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #0d6efd;
+  background: #eef5ff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

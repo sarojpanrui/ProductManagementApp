@@ -55,7 +55,7 @@ export class DashboardComponent {
     this.productService.getProducts(input).subscribe(res => {
       this.products = res.items ?? [];
       this.product_count = res.totalCount ?? 0;
-      console.log(res.items)
+      // console.log(res.items)
       this.recentProducts = this.products.slice(-5).reverse();
       this.isLoading=false;
     });
@@ -171,7 +171,7 @@ export class DashboardComponent {
         order.map(b => b.vendorName)
       )
       this.vendor_count = uniqueVendor.size
-      console.log(this.vendor_count)
+      // console.log(this.vendor_count)
       this.isLoading=false
     })
   }

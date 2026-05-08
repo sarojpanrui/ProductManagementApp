@@ -1,3 +1,4 @@
+<!-- Header section -->
 <nav class="sticky-header bg-white shadow-sm px-3 py-3 mb-3 rounded-4">
 
   <div class="container-fluid">
@@ -11,7 +12,7 @@
       </div>
 
       <!-- Search Box -->
-      <div class="col-12 col-md">
+      <div class="col-12 col-md ">
         <div class="input-group">
           <span class="input-group-text bg-white border-end-0">
             <i class="fas fa-search text-muted"></i>
@@ -20,13 +21,23 @@
             [(ngModel)]="searchText" />
 
         </div>
+
       </div>
 
       <!-- Clear Button -->
-      <div class="col-12 col-md-auto text-end">
+      <div class="col-12 col-md-auto text-end d-flex gap-2">
         <button class="btn btn-outline-secondary rounded-pill px-3 w-100 w-md-auto" (click)="searchText=''">
           Clear
         </button>
+
+        <!-- add button -->
+        <button class="btn btn-success rounded-pill px-4 shadow-sm" (click)="openModal()">
+          <div class="d-flex gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-plus-icon lucide-file-plus"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg>
+            <span class="d-flex">Add</span>
+          </div>
+        </button>
+
       </div>
 
     </div>
@@ -40,23 +51,41 @@
 </div>
 
 <div class="container mt-3" *ngIf="!isLoading">
-  <div class="card-body p-0">
-    <div class="customer-scroll row g-3">
-      @if (filteredCustomers.length > 0) {
-      @for (c of filteredCustomers; track c.name) {
+  <div class="container-fluid mt-3" *ngIf="!isLoading">
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <app-user-card [customer]="c"></app-user-card>
+    <div class="card-body p-0">
+
+      <div class="row g-4">
+
+        @if (filteredCustomers.length > 0) {
+
+        @for (c of filteredCustomers; track c.id) {
+
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3 d-flex">
+
+          <app-user-card class="w-100" [customer]="c" (deleted)="fetchCustomers()"
+          (updated)="fetchCustomers()"
+          >
+          </app-user-card>
+
+        </div>
+
+        }
+
+        } @else {
+
+        <div class="text-center text-muted py-5 w-100">
+          No customers found
+        </div>
+
+        }
+
       </div>
 
-      }
-      } @else {
-      <div class="text-center text-muted py-4 w-100">
-        No customers found
-      </div>
-      }
     </div>
+
   </div>
+
 </div>
 
 <!-- pagination part -->
@@ -78,7 +107,7 @@
   </span>
 
   <button class="btn btn-outline-primary rounded-pill" (click)="nextPage()"
-    [disabled]="pageIndex * pageSize >= totalBills">
+    [disabled]="pageIndex * pageSize >= totalCustomers">
     <span>
       Next
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -90,3 +119,77 @@
     </span>
   </button>
 </div>
+
+
+<!-- modal section -->
+<abp-modal [(visible)]="isOpen">
+
+  <ng-template #abpHeader>
+    <h3>Create New Customer</h3>
+  </ng-template>
+
+  <ng-template #abpBody>
+
+    <form [formGroup]="form">
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+
+        <input type="text" class="form-control" formControlName="name" />
+
+        <small class="text-danger" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+          Name is required
+        </small>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+
+        <textarea class="form-control" rows="3" formControlName="address"></textarea>
+
+        <small class="text-danger" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+          Address is required
+        </small>
+      </div>
+
+      <!-- Phone -->
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+
+        <input type="text" class="form-control" formControlName="phone" />
+
+        <small class="text-danger" *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
+          Phone is required
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+
+        <input type="email" class="form-control" formControlName="email" />
+
+        <small class="text-danger" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          Valid email is required
+        </small>
+      </div>
+
+    </form>
+
+  </ng-template>
+
+  <ng-template #abpFooter>
+
+    <button class="btn btn-secondary me-2" type="button" (click)="isOpen = false">
+      Cancel
+    </button>
+
+    <button class="btn btn-primary" type="button" [disabled]="form.invalid" (click)="create()">
+      Save
+    </button>
+
+  </ng-template>
+
+</abp-modal>

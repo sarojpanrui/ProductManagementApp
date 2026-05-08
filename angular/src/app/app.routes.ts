@@ -8,6 +8,7 @@ import { UserComponent } from './Pages/user/user.component';
 import { OrderComponent } from './Pages/order/order.component';
 import { OrderViewComponent } from './Pages/order-view/order-view.component';
 import { VendorComponent } from './Pages/vendor/vendor.component';
+import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
 
 export const appRoutes: Routes = [
  {
@@ -45,6 +46,11 @@ export const appRoutes: Routes = [
   {
     path:'vendor',
     component:VendorComponent
+  },
+  {
+    path:'**',
+    component:PageNotFoundComponent
+
   }
   
 ];

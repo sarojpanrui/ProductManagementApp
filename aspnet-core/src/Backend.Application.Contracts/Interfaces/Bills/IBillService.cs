@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 
 
 
-namespace Backend
+namespace Backend.Interfaces.Bills
 {
     public interface IBillService
     {

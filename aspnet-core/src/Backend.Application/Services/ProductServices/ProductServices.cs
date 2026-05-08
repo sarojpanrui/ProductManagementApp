@@ -1,6 +1,6 @@
 ﻿using Backend.DTOs.Product;
 using Backend.Entity;
-
+using Backend.Interfaces.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;

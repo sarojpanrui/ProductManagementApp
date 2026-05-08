@@ -7,7 +7,7 @@ using Volo.Abp.Application.Services;
 
 
 
-namespace Backend
+namespace Backend.Interfaces.Products
 {
     public interface IProductService : IApplicationService
     {

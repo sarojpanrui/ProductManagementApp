@@ -10,6 +10,7 @@ export interface BillDto extends EntityDto<string> {
 
 export interface CreateBillDto {
   customer?: string;
+  customerId?: string | null;
   totalAmount?: number;
   buyProducts?: string;
 }

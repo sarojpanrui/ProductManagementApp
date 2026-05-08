@@ -1,4 +1,5 @@
 using Backend.DTOs.Bill;
+using Backend.DTOs.Customer;
 using Backend.DTOs.Order;
 using Backend.DTOs.Product;
 using Backend.Entity;
@@ -53,6 +54,25 @@ public partial class BackendApplicationMappers
     {
         public override partial Order Map(CreateOrderDto source);
         public override partial void Map(CreateOrderDto source, Order destination);
+    }
+
+    [Mapper]
+    public partial class CustomerToCustomerDtoMapper : MapperBase<Customer, CustomerDto>
+    {
+        public override partial CustomerDto Map(Customer source);
+
+        public override partial void Map(Customer source, CustomerDto destination);
+    }
+
+    [Mapper]
+    public partial class CreateCustomerToCustomerMapper : MapperBase<CustomerCreateDto, Customer>
+    {
+        public override partial Customer Map(CustomerCreateDto source);
+
+        public override partial void Map(
+            CustomerCreateDto source,
+            Customer destination
+        );
     }
 
 

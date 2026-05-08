@@ -26,7 +26,6 @@ import { CommonModule } from '@angular/common';
 
 export class ProductComponent implements OnInit {
   readonly productServices = inject(ProductServicesService);
-
   private confirmation = inject(ConfirmationService);
   private readonly fb = inject(FormBuilder);
   toast = inject(ToasterService)

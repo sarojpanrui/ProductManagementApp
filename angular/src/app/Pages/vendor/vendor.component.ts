@@ -77,6 +77,6 @@ export class VendorComponent {
 
     this.vendorSummary = Array.from(map, ([name, total]) =>
       ({ name, total }))
-    console.log(this.vendorSummary)
+    // console.log(this.vendorSummary)
   }
 }

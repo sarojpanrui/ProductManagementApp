@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 
-namespace Backend
+namespace Backend.Interfaces.Orders
 {
     public interface IOrderService
     {

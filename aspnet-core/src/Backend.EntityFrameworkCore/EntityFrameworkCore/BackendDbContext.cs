@@ -64,6 +64,7 @@ public class BackendDbContext :
     public DbSet<Product> Products { get; set; }
     public DbSet<Bill> Bills { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<Customer> Customers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -142,6 +143,31 @@ public class BackendDbContext :
                 .IsRequired();
             b.Property(x => x.IsReceived)
                 .IsRequired();
+        });
+
+        builder.Entity<Customer>(b =>
+        {
+            b.ToTable("AppCustomers");
+
+            b.ConfigureByConvention();
+
+            b.Property(x => x.Name)
+                .HasMaxLength(100);
+
+            b.Property(x => x.Address)
+                .HasMaxLength(250);
+
+            b.Property(x => x.Phone)
+                .HasMaxLength(15);
+
+            b.Property(x => x.Email)
+                .HasMaxLength(100);
+
+            b.Property(x => x.Products)
+                .HasMaxLength(500);
+
+            b.Property(x => x.TotalAmount)
+                .HasColumnType("decimal(18,2)");
         });
     }
 }
