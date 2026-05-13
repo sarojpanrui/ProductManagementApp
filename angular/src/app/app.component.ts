@@ -3,6 +3,7 @@ import { InternetConnectionStatusComponent, LoaderBarComponent } from '@abp/ng.t
 import { DynamicLayoutComponent } from '@abp/ng.core';
 import { inject } from '@angular/core';
 import { RoutesService, eLayoutType } from '@abp/ng.core';
+import { StatisticsComponent } from './Pages/statistics/statistics.component';
 
 @Component({
   selector: 'app-root',
@@ -68,6 +69,20 @@ export class AppComponent {
         path: '/vendor',
         name: 'MyVendors',
         iconClass: 'fas fa-truck',
+        order: 3,
+        layout: eLayoutType.application
+      },
+      {
+        path: '/stats',
+        name: 'Statistics',
+        iconClass: 'fas fa-chart-pie',
+        order: 3,
+        layout: eLayoutType.application
+      },
+      {
+        path: '/filter',
+        name: 'Filter',
+        iconClass: 'fas fa-filter',
         order: 3,
         layout: eLayoutType.application
       }

@@ -1,0 +1,34 @@
+.filter-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+}
+
+.custom-select {
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+
+  transition: all 0.3s ease;
+}
+
+.custom-select:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+  border-color: #86b7fe;
+}
+
+.bill-card,
+.customer-card {
+  transition: all 0.3s ease;
+}
+
+.bill-card:hover,
+.customer-card:hover {
+  transform: translateY(-5px);
+}

@@ -12,8 +12,6 @@ import { GetProductListDto } from '@proxy/dtos/product';
 import { ProductServicesService } from '@proxy/services/product-services';
 import { CommonModule } from '@angular/common';
 
-
-
 @Component({
   selector: 'app-product',
   standalone: true,
@@ -21,8 +19,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
-
-
 
 export class ProductComponent implements OnInit {
   readonly productServices = inject(ProductServicesService);
@@ -81,18 +77,6 @@ export class ProductComponent implements OnInit {
         }
       });
   }
-
-
-
-  // fetchProduct() {
-  //   const page: GetProductListDto = {
-  //     skipCount: 0,
-  //     maxResultCount: 100
-  //   };
-  //   this.productServices.getProducts(page).subscribe(res => {
-  //     this.products = res.items ?? [];
-  //   });
-  // }
 
 
   fetchProduct() {

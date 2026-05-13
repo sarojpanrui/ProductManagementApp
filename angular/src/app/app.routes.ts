@@ -9,48 +9,61 @@ import { OrderComponent } from './Pages/order/order.component';
 import { OrderViewComponent } from './Pages/order-view/order-view.component';
 import { VendorComponent } from './Pages/vendor/vendor.component';
 import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
+import { BarChartComponent } from './Component/bar-chart/bar-chart.component';
+import { StatisticsComponent } from './Pages/statistics/statistics.component';
+import { FilterComponent } from './Pages/filter/filter.component';
+
 
 export const appRoutes: Routes = [
- {
-    path:'',
-    component:DashboardComponent
+  {
+    path: '',
+    component: DashboardComponent
   },
   {
-    path:'product',
-    component:ProductComponent
+    path: 'product',
+    component: ProductComponent
   },
   {
-    path:'bill',
-    component:BillComponent
+    path: 'bill',
+    component: BillComponent
   },
   {
-    path:'generateBill',
-    component:GenerateBillComponent
+    path: 'generateBill',
+    component: GenerateBillComponent
   },
   {
-    path:'viewbill/:id',
-    component:ViewBillComponent
+    path: 'viewbill/:id',
+    component: ViewBillComponent
   },
   {
-    path:'user',
-    component:UserComponent
+    path: 'user',
+    component: UserComponent
   },
   {
-    path:'order',
-    component:OrderComponent
+    path: 'order',
+    component: OrderComponent
   },
   {
-    path:'orderview/:id',
-    component:OrderViewComponent
+    path: 'orderview/:id',
+    component: OrderViewComponent
   },
   {
-    path:'vendor',
-    component:VendorComponent
+    path: 'vendor',
+    component: VendorComponent
   },
   {
-    path:'**',
-    component:PageNotFoundComponent
+    path: 'stats',
+    component: StatisticsComponent
+  },
+  {
+    path: 'filter',
+    component: FilterComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
 
   }
-  
+
+
 ];

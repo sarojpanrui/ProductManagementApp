@@ -18,5 +18,8 @@ namespace Backend.DTOs.Customer
         public string? Email { get; set; }
 
         public string? Products { get; set; }
+
+        public DateTime CreationTime { get; set; }
+
     }
 }

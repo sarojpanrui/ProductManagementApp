@@ -12,6 +12,6 @@ namespace Backend.DTOs.Bill
         public decimal TotalAmount { get; set; }
 
         public string BuyProducts { get; set; } = string.Empty;
-        public DateTime CreateTime { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

@@ -20,6 +20,7 @@ export interface CustomerDto {
   phone?: string | null;
   email?: string | null;
   products?: string | null;
+  creationTime?: string;
 }
 
 export interface GetCustomerListDto extends PagedResultRequestDto {

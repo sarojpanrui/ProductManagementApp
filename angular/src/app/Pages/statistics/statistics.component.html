@@ -1,0 +1,121 @@
+<div class="dashboard-page" id="dashboardContent">
+
+  <!-- HEADER -->
+  <div class="dashboard-header mb-4 d-flex justify-content-between align-items-center">
+
+    <!-- Title Section -->
+    <div>
+      <h2 class="dashboard-title">Analytics Dashboard</h2>
+
+      <p class="dashboard-subtitle">
+        Monitor bills, customers and product performance
+      </p>
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <button
+      class="btn btn-primary download-btn d-flex gap-1"
+      (click)="downloadDashboard()">
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+       <span>Download Report</span>
+    </button>
+
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="row g-4">
+
+    <!-- BAR CHART -->
+    <div class="col-12 col-xl-6">
+      <div class="dashboard-card h-100">
+
+        <div class="dashboard-card-header">
+          <h5>Customer Sales Analytics</h5>
+        </div>
+
+        <div class="dashboard-card-body">
+          <app-bar-chart></app-bar-chart>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PIE CHART -->
+    <div class="col-12 col-xl-6">
+      <div class="dashboard-card h-100">
+
+        <div class="dashboard-card-header">
+          <h5>Bills vs Customers vs Products</h5>
+        </div>
+
+        <div class="dashboard-card-body">
+          <app-pie-chart></app-pie-chart>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VISITED CUSTOMER -->
+    <div class="col-12 col-xl-6">
+      <div class="dashboard-card h-100">
+
+        <div class="dashboard-card-header">
+          <h5>Most Visited Customers</h5>
+        </div>
+
+        <div class="dashboard-card-body">
+          <app-visited-customer></app-visited-customer>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TOP SELLING PRODUCTS -->
+    <div class="col-12 col-xl-6">
+      <div class="dashboard-card h-100">
+
+        <div class="dashboard-card-header">
+          <h5>Top Selling Products</h5>
+        </div>
+
+        <div class="dashboard-card-body">
+          <app-topselling-product></app-topselling-product>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MONTHLY BILL REPORT -->
+    <div class="col-12">
+      <div class="dashboard-card">
+
+        <div class="dashboard-card-header">
+          <h5>Monthly Bills Report</h5>
+        </div>
+
+        <div class="dashboard-card-body">
+          <app-bill-month></app-bill-month>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MONTHLY CUSTOMER REPORT -->
+    <div class="col-12">
+      <div class="dashboard-card">
+
+        <div class="dashboard-card-header">
+          <h5>Monthly Customer Report</h5>
+        </div>
+
+        <div class="dashboard-card-body">
+          <app-customer-month></app-customer-month>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

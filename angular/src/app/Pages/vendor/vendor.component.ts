@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { OrderService } from '@proxy/services/order-services';
 import { OrderDto } from '@proxy/dtos/order';
 import { FormsModule } from '@angular/forms';
-// import { UserCardComponent } from 'src/app/Component/user-card/user-card.component';
 import { VendorCardComponent } from 'src/app/Component/vendor-card/vendor-card.component';
 import { CommonModule } from '@angular/common';
 

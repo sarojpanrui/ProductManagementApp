@@ -139,6 +139,8 @@
 
 
   <div class="row g-4" cdkDropList (cdkDropListDropped)="dropList($event)" *ngIf="!isLoading">
+
+    
     @for (card of listCards; track card.id) {
     <div class="col-12 col-md-4" cdkDrag>
       <!-- PRODUCTS -->
@@ -242,4 +244,5 @@
     }
 
   </div>
+  
 </div>

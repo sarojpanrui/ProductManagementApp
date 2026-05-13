@@ -10,6 +10,7 @@ namespace Backend.DTOs.Product
         public int Price { get; set; }
         public int Quantity { get; set; }
 
-        public DateTime CreateTime { get; set; }
+        public DateTime CreationTime { get; set; }
+
     }
 }

@@ -16,5 +16,5 @@ export interface ProductDto {
   description?: string;
   price?: number;
   quantity?: number;
-  createTime?: string;
+  creationTime?: string;
 }
